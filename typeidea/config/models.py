@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
-
+from django.template.loader import render_to_string
+from blog.models import Post
+from comment.models import Comment
 
 class Link(models.Model):
     STATUS_NORMAL = 1
@@ -18,22 +20,32 @@ class Link(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '友链'
+        # 按权重逆序排列
+        ordering = ['-weight',]
+
+    def __str__(self):
+        return self.title
 
 class SideBar(models.Model):
+    DISPLAY_HTML = 1
+    DISPLAY_LATEST = 2
+    DISPLAY_HOT = 3
+    DISPLAY_COMMENT = 4
+    SIDE_TYPE = (
+        (DISPLAY_HTML,'HTML'),
+        (DISPLAY_LATEST,'最新文章'),
+        (DISPLAY_HOT,'最热文章'),
+        (DISPLAY_COMMENT,'最近评论'),
+    )
+
     STATUS_SHOW = 1
     STATUS_HIDE = 0
     STATUS_ITEMS = (
         (STATUS_SHOW,'展示'),
         (STATUS_HIDE,'隐藏'),
     )
-    SIDE_TYPE = (
-        (1,'HTML'),
-        (2,'最新文章'),
-        (3,'最热文章'),
-        (4,'最近评论'),
-    )
     title = models.CharField(max_length=50,verbose_name='标题')
-    display_type =models.PositiveIntegerField(default=1,choices=SIDE_TYPE,verbose_name='展示类型')
+    display_type = models.PositiveIntegerField(default=1,choices=SIDE_TYPE,verbose_name='展示类型')
     content = models.CharField(max_length=500,blank=True,verbose_name='内容',help_text='如果设置的不是HTML类型，可为空.')
     status = models.PositiveIntegerField(default=STATUS_SHOW,choices=STATUS_ITEMS,verbose_name='状态')
     owner = models.ForeignKey(User,verbose_name='作者')
@@ -42,7 +54,48 @@ class SideBar(models.Model):
     class Meta:
         verbose_name = verbose_name_plural = '侧边栏'
 
+    def __str__(self):
+        return self.title
+
+    def _render_latest(self):
+        pass
+
+    # 获取所有可展示的侧边栏
+    @classmethod
+    def get_all(cls):
+        return cls.objects.filter(status=cls.STATUS_SHOW)
 
 
+    def content_html(self):
+        # from blog.models import Post
+        # from comment.models import Comment
 
-
+        result = ''
+        # 展示html
+        if self.display_type == self.DISPLAY_HTML:
+            # print('>>>>>>>>>')
+            result = self.content
+        # 获取最新文章，返回渲染好的数据
+        elif self.display_type == self.DISPLAY_LATEST:
+            context = {
+                # 'posts':Post.latest_posts(with_related=False)
+                'posts':Post.latest_posts()
+            }
+            # print('++--++',Post.latest_posts())
+            # print('<<<<<<<<')
+            result = render_to_string('config/blocks/sidebar_posts.html',context)
+        # 获取最热文章，返回渲染好的数据
+        elif self.display_type == self.DISPLAY_HOT:
+            context = {
+                'posts':Post.hot_posts()
+            }
+            # print('---------')
+            result = render_to_string('config/blocks/sidebar_posts.html',context)
+        # 获取最近评论，返回渲染好的数据
+        elif self.display_type == self.DISPLAY_COMMENT:
+            context = {
+                'comments':Comment.objects.filter(status=Comment.STATUS_NORMAL)
+            }
+            # print('+++++++')
+            result = render_to_string('config/blocks/sidebar_comments.html',context)
+        return result
