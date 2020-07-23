@@ -19,3 +19,4 @@ class PostSitemap(Sitemap):
         return reverse('post-detail',args=[obj.pk])
 
     # 添加一行文字
+    # 添加一行文字
