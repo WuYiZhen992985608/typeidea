@@ -84,6 +84,9 @@ class Post(models.Model):
     pv = models.PositiveIntegerField(default=1)
     uv = models.PositiveIntegerField(default=1)
     content_html = models.TextField(verbose_name="正文html代码",blank=True,editable=False)
+    content_ck = models.TextField(verbose_name="正文",blank=True)
+    content_md = models.TextField(verbose_name="正文",blank=True)
+    is_md = models.BooleanField(default=False,verbose_name="markdown语法")
 
     class Meta:
         verbose_name = verbose_name_plural = '文章'
@@ -95,7 +98,10 @@ class Post(models.Model):
 
     # post内容保存为html格式，便于提取展示
     def save(self,*args,**kwargs):
-        self.content_html = mistune.markdown(self.content)
+        if self.is_md:
+            self.content_html = mistune.markdown(self.content)
+        else:
+            self.content_html = self.content
         # print('content',self.owner_id)
         # print('content',self.content)
         # print('content_html',self.content_html)
