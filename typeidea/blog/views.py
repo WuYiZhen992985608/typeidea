@@ -10,6 +10,7 @@ from django.shortcuts import render
 # from comment.forms import CommentForm
 from .models import Post, Tag, Category
 # from comment.models import Comment
+from silk.profiling.profiler import silk_profile
 
 # def post_list(request,category_id=None,tag_id=None):
 #     # content = 'post_list category_id={category_id},tag_id={tag_id}'.format(
@@ -54,6 +55,8 @@ from .models import Post, Tag, Category
 
 # 新建类增加通用数据，分类导航，侧边栏，底部导航
 class CommonViewMixin:
+
+    @silk_profile(name='get_context_data')
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
@@ -189,3 +192,5 @@ class AuthorView(IndexView):
         queryset = super().get_queryset()
         author_id = self.kwargs.get('owner_id')
         return queryset.filter(owner_id=author_id)
+
+

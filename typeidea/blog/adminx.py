@@ -18,7 +18,7 @@ from typeidea.base_admin import BaseOwnerAdmin
 # 分类编辑页面增加文章编辑功能
 class PostInline:
     # 文章可编辑的项目
-    field_layout = (
+    form_layout = (
         Container(
             Row('title','desc'),
         )
@@ -50,6 +50,7 @@ class TagAdmin(BaseOwnerAdmin):
 class CategoryOwnerFilter(RelatedFieldListFilter):
     """自定义过滤器只展示当前用户分类"""
 
+    # 确认字段是否需要被当前的过滤器处理
     @classmethod
     def test(cls,field,request,params,model,admin_view,field_path):
         return field.name == 'cateogry'

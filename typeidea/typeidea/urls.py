@@ -21,8 +21,11 @@ from django.conf.urls import url,include
 from django.conf.urls.static import static
 
 import xadmin
-from .autocomplete import CategoryAutocomplete,TagAutocomplete
 
+
+from .autocomplete import CategoryAutocomplete,TagAutocomplete
+from rest_framework.routers import DefaultRouter
+from rest_framework.documentation import include_docs_urls
 # from blog.views import post_list,post_detail
 from blog.views import (
     IndexView,CategoryView,TagView,
@@ -31,11 +34,14 @@ from blog.views import (
 )
 from blog.rss import LatestPostFeed
 from blog.sitemap import PostSitemap
+# from blog.apis import post_list,PostList
+from blog.apis import PostViewSet,CategoryViewSet
 from config.views import LinkListView
 from comment.views import CommentView
 
-
-
+router = DefaultRouter()
+router.register(r'post',PostViewSet,base_name='api-post')
+router.register(r'category',CategoryViewSet,base_name='api-category')
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(),name='index'),
@@ -54,4 +60,16 @@ urlpatterns = [
     url(r'^category-autocomplete/$',CategoryAutocomplete.as_view(),name='category-autocomplete'),
     url(r'^tag-autocomplete/$',TagAutocomplete.as_view(),name='tag-autocomplete'),
     url(r'^ckeditor/',include('ckeditor_uploader.urls')),
+    # url(r'^api/post/',PostList.as_view(),name='post-list'),
+    # url(r'^api/post/',post_list,name='post-list'),
+    url(r'^api/',include(router.urls)),
+    url(r'^api/docs/',include_docs_urls(title='typeidea apis')),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+
+if settings.DEBUG:
+    # import debug_toolbar
+    # urlpatterns = [
+    #     url(r'^__debug__/',include(debug_toolbar.urls)),
+    # ] + urlpatterns
+    urlpatterns += [url(r'^silk/',include('silk.urls',namespace='silk'))]

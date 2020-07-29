@@ -10,7 +10,7 @@ class WatermarkStorage(FileSystemStorage):
     def save(self,name,content,max_length=None):
         if 'image' in content.content_type:
             image = self.watermark_with_text(content,'wuyizhen.com','red')
-            content = self.convert_iamge_to_file(image,name)
+            content = self.convert_image_to_file(image,name)
 
         return super().save(name,content,max_length=max_length)
 

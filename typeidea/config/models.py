@@ -1,8 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.template.loader import render_to_string
-from blog.models import Post
-from comment.models import Comment
+
 
 class Link(models.Model):
     STATUS_NORMAL = 1
@@ -63,12 +62,14 @@ class SideBar(models.Model):
     # 获取所有可展示的侧边栏
     @classmethod
     def get_all(cls):
+        import time
+        time.sleep(1)
         return cls.objects.filter(status=cls.STATUS_SHOW)
 
 
     def content_html(self):
-        # from blog.models import Post
-        # from comment.models import Comment
+        from blog.models import Post
+        from comment.models import Comment
 
         result = ''
         # 展示html
@@ -78,8 +79,8 @@ class SideBar(models.Model):
         # 获取最新文章，返回渲染好的数据
         elif self.display_type == self.DISPLAY_LATEST:
             context = {
-                # 'posts':Post.latest_posts(with_related=False)
-                'posts':Post.latest_posts()
+                'posts':Post.latest_posts(with_related=False)
+                # 'posts':Post.latest_posts()
             }
             # print('++--++',Post.latest_posts())
             # print('<<<<<<<<')

@@ -25,6 +25,7 @@ SECRET_KEY = 'd18ma9gsri+2h-ubu3822q*gp=clfsng3h%5(*2!ak8_(3*)9*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = []
 
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'dal',
     'dal_select2',
     'xadmin',
+    'rest_framework',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -145,7 +147,12 @@ CKEDITOR_CONFIGS = {
     },
 }
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+MEDIA_ROOT = os.path.join(BASE_DIR,'themes','bootstrap','static',MEDIA_URL)
 CKEDITOR_UPLOAD_PATH = "article_images"
 DEFAULT_FILE_STORAGE = 'typeidea.storage.WatermarkStorage'
 # USE_MARKDOWN_EDITOR = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE':2,
+}

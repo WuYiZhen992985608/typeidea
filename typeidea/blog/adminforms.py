@@ -22,12 +22,12 @@ class PostAdminForm(forms.ModelForm):
     conetnt_ck = forms.CharField(widget=CKEditorUploadingWidget(),label='正文',required=False)
     conetnt_md = forms.CharField(widget=forms.Textarea(),label='正文',required=False)
     content = forms.CharField(widget=forms.HiddenInput(),required=False)
+    # content = forms.CharField(widget=CKEditorUploadingWidget(),label='正文',required=True)
 
     class Meta:
         model = Post
-        fields = ('category','tag','title','desc',
-                  'is_md','content','content_ck','content_md',
-                  'status'
+        fields = ('category','tag','title','desc','content','status',
+                  'is_md','content_ck','content_md',
                   )
 
     def __init__(self,instance=None,initial=None,**kwargs):

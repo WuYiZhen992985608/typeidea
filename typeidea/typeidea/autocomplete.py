@@ -9,6 +9,7 @@ class CategoryAutocomplete(autocomplete.Select2QuerySetView):
             return Category.objects.none()
 
         qs = Category.objects.filter(owner=self.request.user)
+        # qs = Category.objects.all()
 
         if self.q:
             qs = qs.filter(name__istartswith=self.q)
@@ -20,6 +21,7 @@ class TagAutocomplete(autocomplete.Select2QuerySetView):
             return Tag.objects.none()
 
         qs = Tag.objects.filter(owner=self.request.user)
+        # qs = Tag.objects.all()
 
         if self.q:
             qs = qs.filter(name__istartswith=self.q)

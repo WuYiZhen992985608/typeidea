@@ -59,6 +59,7 @@ class Tag(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '标签'
+        ordering = ['-id']
 
     def __str__(self):
         return self.name
@@ -135,14 +136,15 @@ class Post(models.Model):
 
         return post_list,category
 
-    @classmethod
+
     # def latest_posts(cls,with_related=True):
-    def latest_posts(cls):
+    @classmethod
+    def latest_posts(cls,with_related=True):
         # 获取状态为1的文章，默认按id倒序，也是时间倒序输出，以下两句等效
         # queryset = cls.objects.filter(status=cls.STATUS_NORMAL).order_by('-created_time')
         queryset = cls.objects.filter(status=cls.STATUS_NORMAL)
-        # if with_related:
-        #     queryset = queryset.select_related('owner','category')
+        if with_related:
+            queryset = queryset.select_related('owner','category')
         return queryset
 
     # 获取最热文章，根据热度从大到小排列
