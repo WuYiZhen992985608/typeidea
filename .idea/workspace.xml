@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd1ba46a-a4c6-41c2-b0a3-1145d790b5bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/typeidea/blog/apis.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/typeidea/blog/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/typeidea/blog/adminforms.py" beforeDir="false" afterPath="$PROJECT_DIR$/typeidea/blog/adminforms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/typeidea/blog/adminx.py" beforeDir="false" afterPath="$PROJECT_DIR$/typeidea/blog/adminx.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/typeidea/blog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/typeidea/blog/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/typeidea/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/typeidea/blog/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/typeidea/config/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/typeidea/config/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/typeidea/typeidea/autocomplete.py" beforeDir="false" afterPath="$PROJECT_DIR$/typeidea/typeidea/autocomplete.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/typeidea/typeidea/base_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/typeidea/typeidea/base_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/typeidea/typeidea/settings/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/typeidea/typeidea/settings/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/typeidea/typeidea/settings/develop.py" beforeDir="false" afterPath="$PROJECT_DIR$/typeidea/typeidea/settings/develop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/typeidea/typeidea/storage.py" beforeDir="false" afterPath="$PROJECT_DIR$/typeidea/typeidea/storage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/typeidea/typeidea/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/typeidea/typeidea/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/typeidea/blog/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="58" column="42" lean-forward="true" selection-start-line="58" selection-start-column="42" selection-end-line="58" selection-end-column="42" />
+            <state relative-caret-position="48">
+              <caret line="57" column="9" lean-forward="true" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -280,12 +267,12 @@
       <workItem from="1595838087578" duration="9671000" />
       <workItem from="1595859933300" duration="755000" />
       <workItem from="1595944364371" duration="4396000" />
-      <workItem from="1595990812501" duration="1674000" />
+      <workItem from="1595990812501" duration="2085000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="254638000" />
+    <option name="totallyTimeSpent" value="255049000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="25" width="1295" height="591" extended-state="6" />
@@ -711,8 +698,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/typeidea/blog/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="58" column="42" lean-forward="true" selection-start-line="58" selection-start-column="42" selection-end-line="58" selection-end-column="42" />
+        <state relative-caret-position="48">
+          <caret line="57" column="9" lean-forward="true" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>

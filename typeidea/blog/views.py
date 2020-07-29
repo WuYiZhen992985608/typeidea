@@ -55,7 +55,7 @@ from silk.profiling.profiler import silk_profile
 
 # 新建类增加通用数据，分类导航，侧边栏，底部导航
 class CommonViewMixin:
-
+    # 12章
     @silk_profile(name='get_context_data')
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
