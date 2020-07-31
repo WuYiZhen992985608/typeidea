@@ -1,3 +1,4 @@
+import logging
 from datetime import date
 from django.core.cache import cache
 from django.db.models import Q,F
@@ -9,8 +10,9 @@ from django.shortcuts import render
 
 # from comment.forms import CommentForm
 from .models import Post, Tag, Category
+from config.models import SideBar
 # from comment.models import Comment
-from silk.profiling.profiler import silk_profile
+# from silk.profiling.profiler import silk_profile
 
 # def post_list(request,category_id=None,tag_id=None):
 #     # content = 'post_list category_id={category_id},tag_id={tag_id}'.format(
@@ -53,23 +55,45 @@ from silk.profiling.profiler import silk_profile
 #     model = Post
 #     template_name = 'blog/detail.html'
 
+logger = logging.getLogger(__name__)
+
 # 新建类增加通用数据，分类导航，侧边栏，底部导航
 class CommonViewMixin:
     # 12章
-    @silk_profile(name='get_context_data')
+    # @silk_profile(name='get_context_data')
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
-            'sidebars': SideBar.get_all(),
+            'sidebars': self.get_sidebars(),
         })
-        context.update(Category.get_navs())
+        context.update(self.get_navs())
         # print('++++++',context)
         return context
+
+    def get_sidebars(self):
+        return SideBar.objects.filter(status=SideBar.STATUS_SHOW)
+
+    # 分别列出导航及非导航category集合
+    def get_navs(cls):
+        categories = Category.objects.filter(status=Category.STATUS_NORMAL)
+        nav_categories = []
+        normal_categories = []
+        for cate in categories:
+            if cate.is_nav:
+                nav_categories.append(cate)
+            else:
+                normal_categories.append(cate)
+
+        return {
+            'navs': nav_categories,
+            'categories': normal_categories,
+        }
 
 # 对应post_list函数，作为主页模板基类，
 # category,tag都从这里继承来处理多个URL的逻辑
 class IndexView(CommonViewMixin, ListView):
-    queryset = Post.latest_posts()
+    # queryset = Post.latest_posts()
+    queryset = Post.objects.filter(status=Post.STATUS_NORMAL).select_related('owner').select_related('category')
     paginate_by = 5
     context_object_name = 'post_list'
     template_name = 'blog/list.html'
@@ -112,7 +136,8 @@ class TagView(IndexView):
 
 # 处理文章详情页URL
 class PostDetailView(CommonViewMixin, DetailView):
-    queryset = Post.latest_posts()
+    # queryset = Post.latest_posts()
+    queryset = Post.objects.filter(status=Post.STATUS_NORMAL)
     template_name = 'blog/detail.html'
     context_object_name = 'post'
     pk_url_kwarg = 'post_id'

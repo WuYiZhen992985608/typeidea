@@ -11,7 +11,7 @@ class CommentView(TemplateView):
 
     def post(self,request,*args,**kwargs):
         comment_form = CommentForm(request.POST)
-        print(request.POST)
+        # print(request.POST)
         target = request.POST.get('target')
 
         # 验证并保存数据，并返回到文章页面

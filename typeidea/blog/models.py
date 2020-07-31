@@ -2,6 +2,7 @@ import mistune
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.functional import cached_property
+from django.core.cache import cache
 
 
 
@@ -17,7 +18,7 @@ class Category(models.Model):
     status = models.PositiveIntegerField(default=STATUS_NORMAL,choices=STATUS_ITEMS,verbose_name='状态')
     is_nav = models.BooleanField(default=False,verbose_name='是否为导航')
     # category是依附于user的，所有一个category只能属于一个user,参考page87数据关系模型；
-    owner = models.ForeignKey(User,verbose_name='作者')
+    owner = models.ForeignKey(User,verbose_name='作者',on_delete=models.DO_NOTHING)
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
 
     class Meta:
@@ -26,22 +27,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-    # 分别列出导航及非导航category集合
-    @classmethod
-    def get_navs(cls):
-        categories = cls.objects.filter(status=cls.STATUS_NORMAL)
-        nav_categories = []
-        normal_categories = []
-        for cate in categories:
-            if cate.is_nav:
-                nav_categories.append(cate)
-            else:
-                normal_categories.append(cate)
 
-        return {
-            'navs':nav_categories,
-            'categories':normal_categories,
-        }
 
 
 class Tag(models.Model):
@@ -54,7 +40,7 @@ class Tag(models.Model):
 
     name = models.CharField(max_length=50, verbose_name='名称')
     status = models.PositiveIntegerField(default=STATUS_NORMAL, choices=STATUS_ITEMS, verbose_name='状态')
-    owner = models.ForeignKey(User, verbose_name='作者')
+    owner = models.ForeignKey(User, verbose_name='作者',on_delete=models.DO_NOTHING)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
 
     class Meta:
@@ -78,16 +64,16 @@ class Post(models.Model):
     desc = models.CharField(max_length=1024,blank=True,verbose_name='摘要')
     content = models.TextField(verbose_name='正文',help_text='正文必须为MarkDown格式')
     status = models.PositiveIntegerField(default=STATUS_NORMAL,choices=STATUS_ITEMS,verbose_name='状态')
-    category = models.ForeignKey(Category,verbose_name='分类')
+    category = models.ForeignKey(Category,verbose_name='分类',on_delete=models.DO_NOTHING)
     tag = models.ManyToManyField(Tag,verbose_name='标签')
-    owner = models.ForeignKey(User,verbose_name='作者')
+    owner = models.ForeignKey(User,verbose_name='作者',on_delete=models.DO_NOTHING)
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
     pv = models.PositiveIntegerField(default=1)
     uv = models.PositiveIntegerField(default=1)
     content_html = models.TextField(verbose_name="正文html代码",blank=True,editable=False)
-    content_ck = models.TextField(verbose_name="正文",blank=True)
-    content_md = models.TextField(verbose_name="正文",blank=True)
-    is_md = models.BooleanField(default=False,verbose_name="markdown语法")
+    # content_ck = models.TextField(verbose_name="正文",blank=True)
+    # content_md = models.TextField(verbose_name="正文",blank=True)
+    is_md = models.BooleanField(default=True,verbose_name="markdown语法")
 
     class Meta:
         verbose_name = verbose_name_plural = '文章'
@@ -150,7 +136,11 @@ class Post(models.Model):
     # 获取最热文章，根据热度从大到小排列
     @classmethod
     def hot_posts(cls):
-        return cls.objects.filter(status=cls.STATUS_NORMAL).order_by('-pv')
+        result = cache.get('hot_posts')
+        if not result:
+            result = cls.objects.filter(status=cls.STATUS_NORMAL).order_by('-pv')
+            cache.set('hot_posts',result,10*60)
+        return result
 
 
     # 把返回的数据绑定到实例上，不用每次都去执行tags中的代码；

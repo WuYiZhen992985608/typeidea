@@ -19,8 +19,8 @@ class PostAdminForm(forms.ModelForm):
         widget=autocomplete.ModelSelect2Multiple(url='tag-autocomplete'),
         label='标签',
     )
-    conetnt_ck = forms.CharField(widget=CKEditorUploadingWidget(),label='正文',required=False)
-    conetnt_md = forms.CharField(widget=forms.Textarea(),label='正文',required=False)
+    content_ck = forms.CharField(widget=CKEditorUploadingWidget(),label='正文',required=False)
+    content_md = forms.CharField(widget=forms.Textarea(),label='正文',required=False)
     content = forms.CharField(widget=forms.HiddenInput(),required=False)
     # content = forms.CharField(widget=CKEditorUploadingWidget(),label='正文',required=True)
 

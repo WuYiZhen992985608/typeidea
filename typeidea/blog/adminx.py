@@ -30,7 +30,7 @@ class PostInline:
 # 定制 site 来实现一个系统对外提供多套 dmin 后台的逻辑
 @xadmin.sites.register(Category)
 class CategoryAdmin(BaseOwnerAdmin):
-    inlines = [PostInline,]
+    # inlines = [PostInline,]
     # 展示category的各项内容
     list_display = ('name','status','is_nav','created_time','post_count')
     # 可编辑的category各项内容

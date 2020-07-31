@@ -1,4 +1,5 @@
 {% load static %}
+{% load cache %}
 <!DOCTYPE HTML>
 <html lang="en">
 
@@ -10,8 +11,8 @@
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     {% block extra_head %}
     {% endblock %}
-    <link rel="stylesheet",href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css">
-    <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+{#    <link rel="stylesheet",href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css">#}
+{#    <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>#}
     <style>
         .post {
         margin-bottom: 5px;
