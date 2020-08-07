@@ -1,0 +1,3 @@
+[console_scripts]
+typeidea_manage = manage:main
+

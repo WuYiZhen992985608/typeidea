@@ -1,0 +1,7 @@
+#  指定要加入的文件或者多个文件，以空格分隔
+include README.md
+
+
+#  递归查找typeidea下面所有对应格式的文件
+recursive-include typeidea *.css *.js *.jpg *.gif *.png *.html *.md
+prune typeidea/typeidea/static_files
