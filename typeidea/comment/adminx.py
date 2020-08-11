@@ -10,7 +10,7 @@ from django.utils.html import format_html
 @xadmin.sites.register(Comment)
 class CommentAdmin:
     # form = CommentAdminForm
-    list_display = ('target','content','website','email','operator')
+    list_display = ('target','nickname','content','website','operator')
     # 管理员审核评论是否展示
     def operator(self,obj):
         return format_html(

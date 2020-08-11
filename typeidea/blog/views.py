@@ -6,11 +6,11 @@ from django.views.generic import ListView, DetailView
 from django.shortcuts import get_object_or_404
 # from django.http import HttpResponse
 from config.models import SideBar
+from .models import Post, Tag, Category
+
 from django.shortcuts import render
 
 # from comment.forms import CommentForm
-from .models import Post, Tag, Category
-from config.models import SideBar
 # from comment.models import Comment
 # from silk.profiling.profiler import silk_profile
 

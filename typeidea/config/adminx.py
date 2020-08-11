@@ -5,7 +5,7 @@ from typeidea.base_admin import BaseOwnerAdmin
 # 展示友链信息
 @xadmin.sites.register(Link)
 class LinkAdmin(BaseOwnerAdmin):
-    list_display = ('title','href','status','weight','created_time','owner')
+    list_display = ('title','href','status','weight','created_time')
     fields = ('title','href','status','weight')
 
     def save_model(self,request,obj,form,change):

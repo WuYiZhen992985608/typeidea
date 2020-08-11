@@ -1,17 +1,16 @@
 # import requests
+import xadmin
+from xadmin.filters import RelatedFieldListFilter
+from xadmin.filters import manager
+from xadmin.layout import Row,Fieldset,Container
+
 from django.urls import reverse
 from django.utils.html import format_html
-import xadmin
-from xadmin.layout import Row,Fieldset,Container
-from xadmin.filters import manager
-from xadmin.filters import RelatedFieldListFilter
+
 
 from .adminforms import PostAdminForm
 from .models import Post,Category,Tag
 from typeidea.base_admin import BaseOwnerAdmin
-
-# from django.contrib.auth import get_permission_codename
-# PERMISSION_API = "http://permission.sso.com/has_perm?user={}&perm_code={}"
 
 
 
@@ -102,7 +101,7 @@ class PostAdmin(BaseOwnerAdmin):
     )
     # 设置tag横向展示
     # filter_vertical = ('tag',)
-    filter_horizontal = ('tag',)
+    # filter_horizontal = ('tag',)
 
 
     # 自定义方法，用来设置文章编辑入口
