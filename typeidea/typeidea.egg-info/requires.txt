@@ -1,0 +1,4 @@
+django==1.11
+
+[ipython]
+ipython==7.16.1
