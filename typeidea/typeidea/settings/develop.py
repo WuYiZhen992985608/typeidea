@@ -1,7 +1,7 @@
 from .base import *  # NOQA
 
 
-DEBUG = True
+DEBUG = False
 
 DATABASES = {
     'default': {
@@ -9,9 +9,9 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'typeidea_db',
-        'USER':'debian-sys-maint',
-        'PASSWORD':'123',
-        'HOST':'127.0.0.1',
+        'USER':'root',
+        'PASSWORD':'root',
+        'HOST':'47.101.142.220',
         'PORT':3306,
         # 'OPTIONS':{'charset':'utf8mb4'}
     }
@@ -30,7 +30,6 @@ MIDDLEWARE += [
 ]
 
 INTERNAL_IPS = ['127.0.0.1']
-
 DEBUG_TOOLBAR_CONFIG = {
     'JQUERY_URL':'https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js',
     # 'SHOW_COLLAPSED': True,

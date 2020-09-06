@@ -5,24 +5,31 @@
 
 <head>
     <meta charset="utf-8"/>
-    <title>{% block title %}首页{% endblock %}- typeidea 博客系统</title>
+    <title>{% block title %}首页{% endblock %}- 乌伊镇 个人博客系统</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <!--<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet">-->
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+{#    <link href="/home/user/Desktop/typeidea-env/typeidea/staticfile/css/bootstrap.css" rel="stylesheet">#}
     {% block extra_head %}
     {% endblock %}
 {#    <link rel="stylesheet",href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css">#}
 {#    <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>#}
+    <script type="text/javascript">
+        var clean_status_div = document.getEL
+    </script>
     <style>
         .post {
         margin-bottom: 5px;
         }
     </style>
+
+    {% block linkscript %}
+    {% endblock linkscript %}
 </head>
 <body>
     <div class="container head">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/">首页</a>
+            <a class="navbar-brand" href="/">首页<a/>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     {% for cate in navs %}
@@ -31,15 +38,27 @@
                     </li>
                     {% endfor %}
                 </ul>
+                {%  if loginstatus == '未登录' %}
+                    <div><a id="register" href="/register/" style="background-color:yellow;margin-right:10px">注册</a></div>
+                    <div><a id="login" href="/login/" style="background-color:red;margin-right:10px">登录</a></div>
+                {% else  %}
+                    <div><span style="margin-right:10px">{{ loginstatus }}</span></div>
+                    <div><a id="clean_status" href="/" style="margin-right:10px">注销</a></div>
+                    <div><a id="newblog" href="/newblog/" style="margin-right:10px">写博客</a></div>
+                    <div><a id="collectblog" href="/collectblog/" style="margin-right:10px">收藏</a></div>
+
+                {% endif %}
                 <form class="form-inline" action="/search/" method="GET">
                     <input class="form-control" type="search" name="keyword" placeholder="Search" aria-label="Search" value="{{ keyword }}">
                     <button class="btn btn-outline-success" type="submit">搜索</button>
                 </form>
             </div>
+
+
         </nav>
         <div class="jumbotron">
-            <h1 class="display-4">Typeidea</h1>
-            <p class="lead">基于Django的多人博客系统</p>
+            <h1 class="display-4">乌伊镇</h1>
+            <p class="lead">Spiritual Garden  /  BLA  BRA  BAR</p>
         </div>
     </div>
     <div class="container main">
@@ -77,7 +96,7 @@
                     </nav>
                 </div>
                 <div class="container power">
-                    <span class="text-muted">Power by Typeidea@the5fire</span>
+                    <span class="text-muted">Power by 992985608@qq.com</span>
                 </div>
                 {% endblock %}
             </footer>

@@ -1,12 +1,17 @@
+import random,os
 import logging
 from datetime import date
 from django.core.cache import cache
 from django.db.models import Q,F
 from django.views.generic import ListView, DetailView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404,render, redirect
 # from django.http import HttpResponse
 from config.models import SideBar
-from .models import Post, Tag, Category
+
+from django.conf import settings
+from .models import Post, Tag, Category,User
+from blog.forms.login import LoginForm
+from django.http import HttpResponse
 
 from django.shortcuts import render
 
@@ -67,7 +72,9 @@ class CommonViewMixin:
             'sidebars': self.get_sidebars(),
         })
         context.update(self.get_navs())
+        context.update(self.get_loginstatus())
         # print('++++++',context)
+
         return context
 
     def get_sidebars(self):
@@ -89,6 +96,15 @@ class CommonViewMixin:
             'categories': normal_categories,
         }
 
+    def get_loginstatus(self):
+        if self.request.session.get('token'):
+            loginstatus = '已登录'
+        else:
+            loginstatus = '未登录'
+        return {'loginstatus':loginstatus}
+
+
+
 # 对应post_list函数，作为主页模板基类，
 # category,tag都从这里继承来处理多个URL的逻辑
 class IndexView(CommonViewMixin, ListView):
@@ -97,6 +113,7 @@ class IndexView(CommonViewMixin, ListView):
     paginate_by = 5
     context_object_name = 'post_list'
     template_name = 'blog/list.html'
+
 
 # 主页带category_id的URL处理
 class CategoryView(IndexView):
@@ -219,3 +236,67 @@ class AuthorView(IndexView):
         return queryset.filter(owner_id=author_id)
 
 
+
+def login(request):
+    print("===",request.method)
+    if request.method == 'POST':
+        f = LoginForm(request.POST)
+        if f.is_valid():
+            nameid = f.cleaned_data['username']
+            print(nameid)
+            pswd = f.cleaned_data['passwd']
+            print(pswd)
+            try:
+                user = User.objects.get(userAccount=nameid)
+                if user.userPasswd != pswd:
+                    return redirect('/login/')
+
+            except User.DoesNotExist as e:
+                return redirect('/login/')
+            token = random.randrange(1, 100000)
+            user.userToken = str(token)
+            user.save()
+            request.session['username'] = user.userName
+            request.session['token'] = user.userToken
+            return redirect('/')
+        else:
+            return render(request, 'blog/login.html', {'title': '登录', 'form': f, 'error': f.errors})
+    else:
+        f = LoginForm()
+        return render(request, 'blog/login.html', {'title': '登录', 'form': f})
+        # return HttpResponse("hello login")
+
+def register(request):
+    # print("+++++",request.method)
+    if request.method == 'POST':
+        userAccount = request.POST.get('userAccount')
+        userPasswd = request.POST.get('userPasswd')
+        userName = request.POST.get('userName')
+        userPhone = request.POST.get('userPhone')
+        userAdderss = request.POST.get('userAddress')
+        userRank = 0
+        token = random.randrange(1,100000)
+        userToken = str(token)
+        f = request.FILES['userImg']
+        userImg = os.path.join(settings.MEDIA_ROOT,userAccount+'.png')
+        with open(userImg,'wb') as fp:
+            for data in f.chunks():
+                fp.write(data)
+        user = User.createuser(userAccount,userPasswd,userName,userPhone,userAdderss,userRank,userToken,userImg)
+        user.save()
+        request.session['username'] = userName
+        request.session['token'] = userToken
+        return redirect('/')
+    else:
+        print(settings.MEDIA_ROOT)
+        return render(request,'blog/register.html',{'title':'注册'})
+
+
+
+def newblog(request):
+    render(request,'blog/newblog.html')
+
+class CollectblogView(IndexView):
+    pass
+    # def __init___(self):
+    #     print(self.request.data)

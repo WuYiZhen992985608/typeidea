@@ -1,0 +1,37 @@
+{% load static from staticfiles %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
+    <script type="text/javascript" charset="utf-8" src="{% static 'js/login.js' %}"></script>
+</head>
+<body>
+<div id="login">
+<a href="/"><p>返回</p></a>
+<div id="box">
+<form action="/login/" method="post">
+{% csrf_token %}
+    <div class="input-group">
+        账号：{{ form.username }}
+        <br>
+        {% if error.username.0 %}
+            <span>{{ error.username.0 }}</span>
+        {% endif %}
+    </div>
+    <div class="input-group">
+        密码：{{ form.passwd }}
+        <br>
+        {% if error.passwd.0 %}
+            <span>{{ error.passwd.0 }}</span>
+        {% endif %}
+    </div>
+<div>
+    <input type="submit" value="登录">
+</div>
+</form>
+</div>
+</div>
+</body>
+</html>

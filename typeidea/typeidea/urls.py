@@ -21,11 +21,14 @@ from django.conf.urls import url,include
 from django.conf.urls.static import static
 from django.contrib.sitemaps import views as sitemap_views
 from django.views.decorators.cache import cache_page
+from django.views.static import serve
 from blog.apis import PostViewSet,CategoryViewSet
 from blog.views import (
     IndexView,CategoryView,TagView,
     PostDetailView,aurl,
     SearchView,AuthorView,
+    login,register,newblog,
+    CollectblogView,
 )
 from blog.rss import LatestPostFeed
 from blog.sitemap import PostSitemap
@@ -42,6 +45,7 @@ router.register(r'category',CategoryViewSet,base_name='api-category')
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(),name='index'),
+    # url(r'^$', loginstatus,name='loginstatus'),
     url(r'^category/(?P<category_id>\d+)/$', CategoryView.as_view(),name='category-list'),
     url(r'^tag/(?P<tag_id>\d+)/$', TagView.as_view(),name='tag-list'),
     url(r'^search/$', SearchView.as_view(), name='search'),
@@ -60,10 +64,15 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api/docs/', include_docs_urls(title='typeidea apis')),
     url(r'^aurl/', aurl,name='aurl'),
+    url(r'^login/',login,name='login'),
+    url(r'^register/',register,name='register'),
+    url(r'^newblog/',newblog,name='newblog'),
+    url(r'^collectblog/',CollectblogView.as_view(),name='collectblog'),
+    url(r'^media/(?P<path>.*)',serve,{'document_root':settings.MEDIA_ROOT}),
     # url(r'^sitemap\.xml$', sitemap_views.sitemap,{'sitemaps':{'posts':PostSitemap}}),
     # url(r'^api/post/',PostList.as_view(),name='post-list'),
     # url(r'^api/post/',post_list,name='post-list'),
-]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+]
 
 
 if settings.DEBUG:

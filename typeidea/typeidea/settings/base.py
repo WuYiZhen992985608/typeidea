@@ -23,10 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'd18ma9gsri+2h-ubu3822q*gp=clfsng3h%5(*2!ak8_(3*)9*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost','.wuyizhen.top','0.0.0.0:8000','*']
 
 
 # Application definition
@@ -90,10 +90,18 @@ WSGI_APPLICATION = 'typeidea.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'typeidea_db',
+        'USER':'root',
+        'PASSWORD':'root',
+        'HOST':'47.101.142.220',
+        'PORT':3306,
+        # 'OPTIONS':{'charset':'utf8mb4'}
     }
 }
 
@@ -135,6 +143,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT= os.path.join(BASE_DIR,"staticfile")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'themes',THEME,"static"),
 ]
@@ -151,8 +160,10 @@ CKEDITOR_CONFIGS = {
         'extraPlugins':'codesnippet',
     },
 }
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR,'themes','bootstrap','static',MEDIA_URL)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'themes','bootstrap','static','media')
+# MEDIA_ROOT = MEDIA_URL
 CKEDITOR_UPLOAD_PATH = "article_images"
 DEFAULT_FILE_STORAGE = 'typeidea.storage.WatermarkStorage'
 # USE_MARKDOWN_EDITOR = True

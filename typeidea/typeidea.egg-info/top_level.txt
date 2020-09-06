@@ -1,0 +1,4 @@
+blog
+comment
+config
+typeidea

@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: typeidea
+Version: 0.1
+Summary: Blog System base on Django
+Home-page: http://www.wuyizhen.com
+Author: wuyizhen
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Provides-Extra: ipython

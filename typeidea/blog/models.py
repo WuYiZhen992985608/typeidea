@@ -148,3 +148,28 @@ class Post(models.Model):
         tgs = ','.join(self.tag.values_list('name',flat=True))
         print('tgstgstgs',tgs)
         return tgs
+
+class User(models.Model):
+    userAccount = models.CharField(max_length=20,unique=True)
+    userPasswd = models.CharField(max_length=20)
+    userName = models.CharField(max_length=20)
+    userPhone = models.CharField(max_length=20)
+    userAdderss = models.CharField(max_length=100)
+    userImg = models.CharField(max_length=150)
+    userRank = models.IntegerField()
+    userToken = models.CharField(max_length=200)
+    cleanStatus = models.BooleanField(default=True,verbose_name="注销")
+    @classmethod
+    def createuser(cls,account,passwd,name,phone,adderss,img,rank,token,clean_status):
+        u = cls(userAccount= account,userPasswd=passwd,userName=name,userPhone=phone,userAdderss=adderss,userImg=img,userRank=rank,userToken=token,cleanStatus=clean_status)
+        return u
+
+class Favorite(models.Model):
+    userAccount = models.CharField(max_length=20)
+    blogid = models.CharField(max_length=10)
+    isDelete = models.BooleanField(default=False)
+    noRepeat = models.CharField(max_length=30,default=1)
+    @classmethod
+    def createfavorite(cls,userAccount,blogid,noRepeat,isDelete):
+        f = cls(userAccount=userAccount,blogid=blogid,noRepeat=noRepeat,isDelete=isDelete)
+        return f
