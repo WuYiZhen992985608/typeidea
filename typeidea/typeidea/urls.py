@@ -28,7 +28,7 @@ from blog.views import (
     PostDetailView,aurl,
     SearchView,AuthorView,
     login,register,newblog,
-    CollectblogView,
+    Favoritelist,
 )
 from blog.rss import LatestPostFeed
 from blog.sitemap import PostSitemap
@@ -67,7 +67,7 @@ urlpatterns = [
     url(r'^login/',login,name='login'),
     url(r'^register/',register,name='register'),
     url(r'^newblog/',newblog,name='newblog'),
-    url(r'^collectblog/',CollectblogView.as_view(),name='collectblog'),
+    url(r'^favoritelist/$',Favoritelist,name='favoritelist'),
     url(r'^media/(?P<path>.*)',serve,{'document_root':settings.MEDIA_ROOT}),
     # url(r'^sitemap\.xml$', sitemap_views.sitemap,{'sitemaps':{'posts':PostSitemap}}),
     # url(r'^api/post/',PostList.as_view(),name='post-list'),

@@ -9,11 +9,12 @@ from django.shortcuts import get_object_or_404,render, redirect
 from config.models import SideBar
 
 from django.conf import settings
-from .models import Post, Tag, Category,User
+from .models import Post, Tag, Category,User,Favorite
 from blog.forms.login import LoginForm
 from django.http import HttpResponse
 
 from django.shortcuts import render
+from django.urls import reverse
 
 # from comment.forms import CommentForm
 # from comment.models import Comment
@@ -238,7 +239,7 @@ class AuthorView(IndexView):
 
 
 def login(request):
-    print("===",request.method)
+    #print("===",request.method)
     if request.method == 'POST':
         f = LoginForm(request.POST)
         if f.is_valid():
@@ -250,8 +251,8 @@ def login(request):
                 user = User.objects.get(userAccount=nameid)
                 if user.userPasswd != pswd:
                     return redirect('/login/')
-
             except User.DoesNotExist as e:
+
                 return redirect('/login/')
             token = random.randrange(1, 100000)
             user.userToken = str(token)
@@ -288,7 +289,7 @@ def register(request):
         request.session['token'] = userToken
         return redirect('/')
     else:
-        print(settings.MEDIA_ROOT)
+        #print(settings.MEDIA_ROOT)
         return render(request,'blog/register.html',{'title':'注册'})
 
 
@@ -296,7 +297,22 @@ def register(request):
 def newblog(request):
     render(request,'blog/newblog.html')
 
-class CollectblogView(IndexView):
-    pass
-    # def __init___(self):
-    #     print(self.request.data)
+def Favoritelist(request):
+    print("_+_+_++_+++")
+    token = request.session.get('token')
+    print(token)
+    if token == None:
+        return redirect(reverse('blog:index'))
+    user = User.objects.get(userToken=token)
+    print('user',user)
+    userid = user.userAccount
+    favorites = Favorite.objects.filter(userAccount=userid)
+    print('favorites',favorites)
+    bloglist = []
+    for f in favorites:
+        bloglist.append(Post.objects.get(id=f.blogid))
+    print('bloglist',bloglist)
+    return render(request, 'blog/favoritelist.html',{'userid': userid, 'favorites': favorites, 'bloglist': bloglist})
+
+
+
