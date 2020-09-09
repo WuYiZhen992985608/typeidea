@@ -1,0 +1,4 @@
+{% extends "./detail.html" %}
+{% block collect %}
+    <div><a id="collect" class="{{ post.id }}" href="{% url 'changefavorite' post.id %}"><span>取消收藏</span></a></div>
+{% endblock collect %}

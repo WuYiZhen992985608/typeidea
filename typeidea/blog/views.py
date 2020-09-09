@@ -7,14 +7,14 @@ from django.views.generic import ListView, DetailView
 from django.shortcuts import get_object_or_404,render, redirect
 # from django.http import HttpResponse
 from config.models import SideBar
-
+from django.http import HttpResponse, JsonResponse
 from django.conf import settings
 from .models import Post, Tag, Category,User,Favorite
 from blog.forms.login import LoginForm
 from django.http import HttpResponse
 
-from django.shortcuts import render
 from django.urls import reverse
+from django.contrib.auth import logout
 
 # from comment.forms import CommentForm
 # from comment.models import Comment
@@ -74,8 +74,8 @@ class CommonViewMixin:
         })
         context.update(self.get_navs())
         context.update(self.get_loginstatus())
+        # context.update(self.get_favorites())
         # print('++++++',context)
-
         return context
 
     def get_sidebars(self):
@@ -104,6 +104,12 @@ class CommonViewMixin:
             loginstatus = '未登录'
         return {'loginstatus':loginstatus}
 
+    # def get_favorites(self):
+    #     if self.request.session.get('token'):
+    #         token=self.request.session.get('token')
+    #         user = User.obejcts.get(userToken=token)
+    #         favorites = Favorite.objects.filter(userAccount=user.userAccount)
+    #     return {'favorites':favorites}
 
 
 # 对应post_list函数，作为主页模板基类，
@@ -163,6 +169,17 @@ class PostDetailView(CommonViewMixin, DetailView):
     # 在get请求中添加处理pv,uv的函数
     def get(self,request,*args,**kwargs):
         response = super().get(request,*args,**kwargs)
+        # if request.session.get('token'):
+        #     token = self.request.session.get('token')
+        #     user = User.objects.get(userToken=token)
+        #     print(request.META)
+        #     blogid = request.META['PATH_INFO'].split('/')[2].split('.')[0]
+        #     if 'changefavorite' in request.META['HTTP_REFERER']:
+        #         favoriter = Favorite.objects.filter(userAccount=user.userAccount).get(blogid=blogid)
+        #         print(favoriter.isDelete)
+        #         favoriter.isDelete = True
+        #         print(favoriter.isDelete)
+        #         favoriter.save()
         self.handle_visited()
         # Post.objects.filter(pk=self.object.id).update(pv=F('pv')+1,uv=F('uv')+1)
         return response
@@ -244,9 +261,9 @@ def login(request):
         f = LoginForm(request.POST)
         if f.is_valid():
             nameid = f.cleaned_data['username']
-            print(nameid)
+            # print(nameid)
             pswd = f.cleaned_data['passwd']
-            print(pswd)
+            # print(pswd)
             try:
                 user = User.objects.get(userAccount=nameid)
                 if user.userPasswd != pswd:
@@ -297,22 +314,58 @@ def register(request):
 def newblog(request):
     render(request,'blog/newblog.html')
 
+def quit(request):
+    logout(request)
+    # print("_____++++++")
+    # return render(request,'blog/base.html')
+    return redirect('/')
+
 def Favoritelist(request):
-    print("_+_+_++_+++")
+    # print("_+_+_++_+++")
     token = request.session.get('token')
-    print(token)
+    # print(token)
     if token == None:
         return redirect(reverse('blog:index'))
     user = User.objects.get(userToken=token)
-    print('user',user)
+    # print('user',user)
     userid = user.userAccount
-    favorites = Favorite.objects.filter(userAccount=userid)
-    print('favorites',favorites)
+    favorites = Favorite.objects.filter(userAccount=userid).filter(isDelete=False)
+    # print('favorites',favorites)
     bloglist = []
     for f in favorites:
         bloglist.append(Post.objects.get(id=f.blogid))
-    print('bloglist',bloglist)
+    # print('bloglist',bloglist)
     return render(request, 'blog/favoritelist.html',{'userid': userid, 'favorites': favorites, 'bloglist': bloglist})
+
+def changefavorite(request,flag):
+    # print('<><><><>')
+    token = request.session.get('token')
+    # print(token)
+    if token==None:
+        f = LoginForm()
+        return render(request,'blog/login.html', {'title': '登录', 'form': f})
+    # print(request.method)
+    blogid = flag
+    # print(blogid)
+    user = User.objects.get(userToken=token)
+    blog = Post.objects.get(id=blogid)
+    if Favorite.objects.get(noRepeat=user.userAccount+blogid):
+        favoriter = Favorite.objects.get(noRepeat=user.userAccount+blogid)
+        if favoriter.isDelete == False:
+            favoriter.isDelete = True
+            favoriter.save()
+            # print('+',favoriter.isDelete)
+            return render(request, 'blog/uncollect.html', {'post': blog})
+        else:
+            favoriter.isDelete = False
+            favoriter.save()
+            # print('-',favoriter.isDelete)
+            return render(request,'blog/collect.html', {'post': blog})
+    else:
+        favoriter = Favorite.createfavorite(user.userAccount,blogid,user.userAccount+blogid,False)
+        favoriter.save()
+        # print(blog.title)
+        return render(request, 'blog/collect.html', {'post': blog})
 
 
 
