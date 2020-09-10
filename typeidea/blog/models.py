@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.db import models
 from django.utils.functional import cached_property
+# from django.utils import six, timezone
+# from django.utils.translation import ugettext_lazy as _
+# from django.contrib.auth.validators import ASCIIUsernameValidator, UnicodeUsernameValidator
 
 
 
@@ -173,3 +176,4 @@ class Favorite(models.Model):
     def createfavorite(cls,userAccount,blogid,noRepeat,isDelete):
         f = cls(userAccount=userAccount,blogid=blogid,noRepeat=noRepeat,isDelete=isDelete)
         return f
+

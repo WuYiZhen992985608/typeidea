@@ -1,10 +1,11 @@
 <hr/>
+<div><h5>以下是评论区</h5></div>
 <div class="comment">
 <form class="form-group" action="/comment/" method="POST">
     {%  csrf_token %}
     <input name="target" type="hidden" value="{{ target }}"/>
     {{ comment_form }}
-    <input type="submit" value="写好了!"/>
+    <input type="submit" value="先就这样吧!"/>
 </form>
 <ul class="list-group">
     {% for comment in comment_list %}

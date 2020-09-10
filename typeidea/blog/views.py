@@ -338,33 +338,49 @@ def Favoritelist(request):
     return render(request, 'blog/favoritelist.html',{'userid': userid, 'favorites': favorites, 'bloglist': bloglist})
 
 def changefavorite(request,flag):
-    # print('<><><><>')
+    print('<><><><>')
     token = request.session.get('token')
-    # print(token)
+    print(token)
     if token==None:
         f = LoginForm()
         return render(request,'blog/login.html', {'title': '登录', 'form': f})
-    # print(request.method)
+    print(request.method)
     blogid = flag
-    # print(blogid)
+    print(blogid)
     user = User.objects.get(userToken=token)
     blog = Post.objects.get(id=blogid)
-    if Favorite.objects.get(noRepeat=user.userAccount+blogid):
+    try:
         favoriter = Favorite.objects.get(noRepeat=user.userAccount+blogid)
+        print(request.META['PATH_INFO'])
+        # print('changefavorite' not in request.META['PATH_INFO'])
+        # if 'changefavorite' not in request.META['PATH_INFO']:
+        #     if favoriter.isDelete == False:
+        #         # print('+',request.META['HTTP_REFERER'])
+        #         # print('+',request.META['PATH_INFO'])
+        #         # print(request.META)
+        #         print('++',favoriter.isDelete)
+        #         return render(request, 'blog/collect.html', {'post': blog})
+        #     else:
+        #         print('--',favoriter.isDelete)
+        #         return render(request,'blog/uncollect.html', {'post': blog})
+        # else:
         if favoriter.isDelete == False:
+            # print('-', request.META['HTTP_REFERER'])
+            # print('-', request.META['PATH_INFO'])
+            # print(request.META)
             favoriter.isDelete = True
             favoriter.save()
-            # print('+',favoriter.isDelete)
+            print('+', favoriter.isDelete)
             return render(request, 'blog/uncollect.html', {'post': blog})
         else:
             favoriter.isDelete = False
             favoriter.save()
-            # print('-',favoriter.isDelete)
-            return render(request,'blog/collect.html', {'post': blog})
-    else:
+            print('-', favoriter.isDelete)
+            return render(request, 'blog/collect.html', {'post': blog})
+    except:
         favoriter = Favorite.createfavorite(user.userAccount,blogid,user.userAccount+blogid,False)
         favoriter.save()
-        # print(blog.title)
+        print(blog.title)
         return render(request, 'blog/collect.html', {'post': blog})
 
 
