@@ -1,0 +1,474 @@
+2020-09-20 15:43:35,969 INFO RPC interface 'supervisor' initialized
+2020-09-20 15:43:35,970 INFO RPC interface 'supervisor' initialized
+2020-09-20 15:43:35,970 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2020-09-20 15:43:35,974 INFO daemonizing the supervisord process
+2020-09-20 15:43:35,975 INFO supervisord started with pid 11667
+2020-09-20 15:43:36,980 INFO spawned: 'typeidea_0' with pid 11668
+2020-09-20 15:43:36,997 INFO spawned: 'typeidea_1' with pid 11669
+2020-09-20 15:43:38,000 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:43:38,000 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:43:44,713 INFO exited: typeidea_0 (exit status 1; not expected)
+2020-09-20 15:43:45,751 INFO spawned: 'typeidea_0' with pid 11682
+2020-09-20 15:43:46,770 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:43:57,469 INFO exited: typeidea_0 (exit status 1; not expected)
+2020-09-20 15:43:58,476 INFO spawned: 'typeidea_0' with pid 11687
+2020-09-20 15:44:00,020 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:44:05,118 INFO exited: typeidea_0 (exit status 1; not expected)
+2020-09-20 15:44:06,124 INFO spawned: 'typeidea_0' with pid 11690
+2020-09-20 15:44:07,673 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:44:12,753 INFO exited: typeidea_0 (exit status 1; not expected)
+2020-09-20 15:44:13,765 INFO spawned: 'typeidea_0' with pid 11695
+2020-09-20 15:44:15,340 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:44:20,423 INFO exited: typeidea_0 (exit status 1; not expected)
+2020-09-20 15:44:21,431 INFO spawned: 'typeidea_0' with pid 11698
+2020-09-20 15:44:23,030 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:44:28,106 INFO exited: typeidea_0 (exit status 1; not expected)
+2020-09-20 15:44:29,113 INFO spawned: 'typeidea_0' with pid 11701
+2020-09-20 15:44:30,624 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:44:35,710 INFO exited: typeidea_0 (exit status 1; not expected)
+2020-09-20 15:44:36,717 INFO spawned: 'typeidea_0' with pid 11704
+2020-09-20 15:44:38,221 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:44:43,299 INFO exited: typeidea_0 (exit status 1; not expected)
+2020-09-20 15:44:44,306 INFO spawned: 'typeidea_0' with pid 11711
+2020-09-20 15:44:45,832 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:44:50,909 INFO exited: typeidea_0 (exit status 1; not expected)
+2020-09-20 15:44:51,912 INFO spawned: 'typeidea_0' with pid 11714
+2020-09-20 15:44:53,747 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:44:58,832 INFO exited: typeidea_0 (exit status 1; not expected)
+2020-09-20 15:44:59,839 INFO spawned: 'typeidea_0' with pid 11734
+2020-09-20 15:45:01,463 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:45:06,541 INFO exited: typeidea_0 (exit status 1; not expected)
+2020-09-20 15:45:07,547 INFO spawned: 'typeidea_0' with pid 11737
+2020-09-20 15:45:08,671 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:45:14,167 INFO exited: typeidea_0 (exit status 1; not expected)
+2020-09-20 15:45:15,172 INFO spawned: 'typeidea_0' with pid 11740
+2020-09-20 15:45:16,677 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:45:20,968 INFO exited: typeidea_0 (exit status 1; not expected)
+2020-09-20 15:45:20,977 INFO spawned: 'typeidea_0' with pid 11743
+2020-09-20 15:45:21,002 INFO waiting for typeidea_0 to stop
+2020-09-20 15:45:21,002 INFO waiting for typeidea_1 to stop
+2020-09-20 15:45:21,013 INFO stopped: typeidea_0 (terminated by SIGTERM)
+2020-09-20 15:45:23,326 INFO waiting for typeidea_1 to stop
+2020-09-20 15:45:24,375 INFO stopped: typeidea_1 (exit status 0)
+2020-09-20 15:49:30,554 INFO spawned: 'typeidea_0' with pid 11803
+2020-09-20 15:49:30,567 INFO spawned: 'typeidea_1' with pid 11804
+2020-09-20 15:49:31,570 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:49:31,570 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:49:37,889 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:49:38,895 INFO spawned: 'typeidea_1' with pid 11820
+2020-09-20 15:49:39,902 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:49:47,282 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:49:48,302 INFO spawned: 'typeidea_1' with pid 11827
+2020-09-20 15:49:50,106 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:49:55,187 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:49:56,194 INFO spawned: 'typeidea_1' with pid 11830
+2020-09-20 15:49:57,705 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:50:02,795 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:50:03,801 INFO spawned: 'typeidea_1' with pid 11833
+2020-09-20 15:50:05,353 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:50:10,415 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:50:11,419 INFO spawned: 'typeidea_1' with pid 11836
+2020-09-20 15:50:12,973 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:50:18,045 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:50:19,052 INFO spawned: 'typeidea_1' with pid 11853
+2020-09-20 15:50:20,670 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:50:25,766 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:50:26,771 INFO spawned: 'typeidea_1' with pid 11867
+2020-09-20 15:50:28,514 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:50:33,587 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:50:34,594 INFO spawned: 'typeidea_1' with pid 11870
+2020-09-20 15:50:36,484 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:50:41,548 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:50:42,552 INFO spawned: 'typeidea_1' with pid 11875
+2020-09-20 15:50:44,405 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:50:49,485 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:50:50,489 INFO spawned: 'typeidea_1' with pid 11887
+2020-09-20 15:50:52,112 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:50:57,194 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:50:58,199 INFO spawned: 'typeidea_1' with pid 11891
+2020-09-20 15:50:59,700 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:51:04,777 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:51:05,783 INFO spawned: 'typeidea_1' with pid 11896
+2020-09-20 15:51:07,481 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:51:12,568 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:51:13,575 INFO spawned: 'typeidea_1' with pid 11900
+2020-09-20 15:51:15,260 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:51:20,338 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:51:21,343 INFO spawned: 'typeidea_1' with pid 11904
+2020-09-20 15:51:22,865 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:51:27,939 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:51:28,943 INFO spawned: 'typeidea_1' with pid 11916
+2020-09-20 15:51:30,439 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:51:35,530 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:51:36,535 INFO spawned: 'typeidea_1' with pid 11919
+2020-09-20 15:51:37,351 INFO waiting for typeidea_0 to stop
+2020-09-20 15:51:37,352 INFO waiting for typeidea_1 to stop
+2020-09-20 15:51:39,500 INFO waiting for typeidea_0 to stop
+2020-09-20 15:51:39,500 INFO waiting for typeidea_1 to stop
+2020-09-20 15:51:40,867 INFO stopped: typeidea_0 (exit status 0)
+2020-09-20 15:51:41,870 INFO waiting for typeidea_1 to stop
+2020-09-20 15:51:43,873 INFO waiting for typeidea_1 to stop
+2020-09-20 15:51:45,877 INFO waiting for typeidea_1 to stop
+2020-09-20 15:51:47,880 WARN killing 'typeidea_1' (11919) with SIGKILL
+2020-09-20 15:51:47,881 INFO waiting for typeidea_1 to stop
+2020-09-20 15:51:48,393 INFO stopped: typeidea_1 (terminated by SIGKILL)
+2020-09-20 15:51:57,672 INFO spawned: 'typeidea_0' with pid 11940
+2020-09-20 15:51:57,676 INFO spawned: 'typeidea_1' with pid 11941
+2020-09-20 15:51:58,687 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:51:58,688 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:52:04,958 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:52:05,964 INFO spawned: 'typeidea_1' with pid 11955
+2020-09-20 15:52:07,616 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:52:12,696 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:52:13,703 INFO spawned: 'typeidea_1' with pid 11958
+2020-09-20 15:52:15,201 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:52:20,296 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:52:21,303 INFO spawned: 'typeidea_1' with pid 11961
+2020-09-20 15:52:22,891 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:52:27,975 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:52:28,982 INFO spawned: 'typeidea_1' with pid 11974
+2020-09-20 15:52:30,576 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:52:35,658 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:52:36,665 INFO spawned: 'typeidea_1' with pid 11977
+2020-09-20 15:52:38,209 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:52:43,291 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:52:44,295 INFO spawned: 'typeidea_1' with pid 11980
+2020-09-20 15:52:45,971 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:52:51,050 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:52:52,055 INFO spawned: 'typeidea_1' with pid 11994
+2020-09-20 15:52:53,638 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:52:58,722 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:52:59,728 INFO spawned: 'typeidea_1' with pid 11997
+2020-09-20 15:53:01,289 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:53:06,376 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:53:07,383 INFO spawned: 'typeidea_1' with pid 12000
+2020-09-20 15:53:08,920 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:53:13,525 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 15:53:13,541 INFO spawned: 'typeidea_1' with pid 12003
+2020-09-20 15:53:13,554 INFO waiting for typeidea_0 to stop
+2020-09-20 15:53:13,554 INFO waiting for typeidea_1 to stop
+2020-09-20 15:53:13,561 INFO stopped: typeidea_1 (terminated by SIGTERM)
+2020-09-20 15:53:15,929 INFO stopped: typeidea_0 (exit status 0)
+2020-09-20 15:57:25,029 INFO RPC interface 'supervisor' initialized
+2020-09-20 15:58:29,738 WARN received SIGTERM indicating exit request
+2020-09-20 15:58:42,296 INFO RPC interface 'supervisor' initialized
+2020-09-20 15:58:42,301 INFO RPC interface 'supervisor' initialized
+2020-09-20 15:58:42,302 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2020-09-20 15:58:42,310 INFO daemonizing the supervisord process
+2020-09-20 15:58:42,311 INFO supervisord started with pid 12081
+2020-09-20 15:58:43,318 INFO spawned: 'typeidea_0' with pid 12082
+2020-09-20 15:58:45,012 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 15:59:58,333 WARN received SIGTERM indicating exit request
+2020-09-20 15:59:58,336 INFO waiting for typeidea_0 to die
+2020-09-20 16:00:00,808 INFO stopped: typeidea_0 (exit status 0)
+2020-09-20 16:00:41,732 INFO RPC interface 'supervisor' initialized
+2020-09-20 16:00:41,737 INFO RPC interface 'supervisor' initialized
+2020-09-20 16:00:41,737 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2020-09-20 16:00:41,745 INFO daemonizing the supervisord process
+2020-09-20 16:00:41,746 INFO supervisord started with pid 12164
+2020-09-20 16:00:42,752 INFO spawned: 'typeidea_0' with pid 12165
+2020-09-20 16:00:42,768 INFO spawned: 'typeidea_1' with pid 12166
+2020-09-20 16:00:43,772 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:00:43,772 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:00:50,017 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:00:51,024 INFO spawned: 'typeidea_1' with pid 12180
+2020-09-20 16:00:52,649 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:00:57,728 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:00:58,732 INFO spawned: 'typeidea_1' with pid 12183
+2020-09-20 16:01:00,277 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:01:05,394 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:01:06,401 INFO spawned: 'typeidea_1' with pid 12186
+2020-09-20 16:01:07,913 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:01:12,992 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:01:13,998 INFO spawned: 'typeidea_1' with pid 12189
+2020-09-20 16:01:15,505 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:01:20,594 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:01:21,601 INFO spawned: 'typeidea_1' with pid 12203
+2020-09-20 16:01:23,345 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:01:28,414 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:01:29,422 INFO spawned: 'typeidea_1' with pid 12206
+2020-09-20 16:01:30,985 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:01:36,105 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:01:37,112 INFO spawned: 'typeidea_1' with pid 12209
+2020-09-20 16:01:38,625 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:01:43,720 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:01:44,727 INFO spawned: 'typeidea_1' with pid 12212
+2020-09-20 16:01:46,299 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:01:51,391 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:01:52,398 INFO spawned: 'typeidea_1' with pid 12215
+2020-09-20 16:01:53,925 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:01:59,018 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:02:00,023 INFO spawned: 'typeidea_1' with pid 12219
+2020-09-20 16:02:01,587 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:02:06,677 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:02:07,683 INFO spawned: 'typeidea_1' with pid 12222
+2020-09-20 16:02:09,243 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:02:14,324 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:02:15,331 INFO spawned: 'typeidea_1' with pid 12225
+2020-09-20 16:02:16,843 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:02:21,918 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:02:22,924 INFO spawned: 'typeidea_1' with pid 12243
+2020-09-20 16:02:24,436 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:02:29,524 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:02:30,530 INFO spawned: 'typeidea_1' with pid 12258
+2020-09-20 16:02:32,047 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:02:36,060 WARN received SIGTERM indicating exit request
+2020-09-20 16:02:36,063 INFO waiting for typeidea_0, typeidea_1 to die
+2020-09-20 16:02:36,527 INFO stopped: typeidea_1 (exit status 1)
+2020-09-20 16:02:38,967 INFO stopped: typeidea_0 (exit status 0)
+2020-09-20 16:02:41,715 INFO RPC interface 'supervisor' initialized
+2020-09-20 16:02:41,717 INFO RPC interface 'supervisor' initialized
+2020-09-20 16:02:41,717 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2020-09-20 16:02:41,721 INFO daemonizing the supervisord process
+2020-09-20 16:02:41,722 INFO supervisord started with pid 12277
+2020-09-20 16:02:42,728 INFO spawned: 'typeidea_0' with pid 12287
+2020-09-20 16:02:42,761 INFO spawned: 'typeidea_1' with pid 12288
+2020-09-20 16:02:43,765 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:02:43,765 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:02:50,137 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:02:51,144 INFO spawned: 'typeidea_1' with pid 12313
+2020-09-20 16:02:52,671 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:02:57,753 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:02:58,759 INFO spawned: 'typeidea_1' with pid 12317
+2020-09-20 16:03:00,300 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:03:05,379 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:03:06,387 INFO spawned: 'typeidea_1' with pid 12320
+2020-09-20 16:03:07,927 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:03:13,010 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:03:14,014 INFO spawned: 'typeidea_1' with pid 12323
+2020-09-20 16:03:15,542 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:03:20,619 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:03:21,626 INFO spawned: 'typeidea_1' with pid 12326
+2020-09-20 16:03:23,134 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:03:28,208 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:03:28,680 INFO spawned: 'typeidea_1' with pid 12340
+2020-09-20 16:03:30,278 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:03:35,358 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:03:36,364 INFO spawned: 'typeidea_1' with pid 12343
+2020-09-20 16:03:37,864 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:03:42,089 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:03:42,104 INFO spawned: 'typeidea_1' with pid 12346
+2020-09-20 16:03:42,133 INFO waiting for typeidea_0 to stop
+2020-09-20 16:03:42,133 INFO waiting for typeidea_1 to stop
+2020-09-20 16:03:42,289 INFO stopped: typeidea_1 (terminated by SIGTERM)
+2020-09-20 16:03:44,625 INFO stopped: typeidea_0 (exit status 0)
+2020-09-20 16:03:44,642 INFO spawned: 'typeidea_0' with pid 12347
+2020-09-20 16:03:44,673 INFO spawned: 'typeidea_1' with pid 12348
+2020-09-20 16:03:45,677 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:03:45,677 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:03:51,889 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:03:52,895 INFO spawned: 'typeidea_1' with pid 12362
+2020-09-20 16:03:53,952 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:04:00,034 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:04:01,040 INFO spawned: 'typeidea_1' with pid 12376
+2020-09-20 16:04:02,565 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:04:07,657 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:04:08,663 INFO spawned: 'typeidea_1' with pid 12379
+2020-09-20 16:04:10,210 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:04:15,288 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:04:16,293 INFO spawned: 'typeidea_1' with pid 12385
+2020-09-20 16:04:17,799 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:04:22,869 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:04:23,876 INFO spawned: 'typeidea_1' with pid 12388
+2020-09-20 16:04:25,451 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:04:30,525 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:04:31,531 INFO spawned: 'typeidea_1' with pid 12402
+2020-09-20 16:04:33,040 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:04:38,117 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:04:39,125 INFO spawned: 'typeidea_1' with pid 12406
+2020-09-20 16:04:40,640 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:04:45,730 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:04:46,735 INFO spawned: 'typeidea_1' with pid 12413
+2020-09-20 16:04:48,253 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:04:53,347 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:04:54,353 INFO spawned: 'typeidea_1' with pid 12416
+2020-09-20 16:04:55,948 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:05:01,036 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:05:02,043 INFO spawned: 'typeidea_1' with pid 12420
+2020-09-20 16:05:03,595 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:05:08,706 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:05:09,710 INFO spawned: 'typeidea_1' with pid 12435
+2020-09-20 16:05:11,210 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:05:16,299 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:05:17,307 INFO spawned: 'typeidea_1' with pid 12438
+2020-09-20 16:05:18,819 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:05:23,900 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:05:24,908 INFO spawned: 'typeidea_1' with pid 12441
+2020-09-20 16:05:26,413 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:05:31,501 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:05:32,509 INFO spawned: 'typeidea_1' with pid 12445
+2020-09-20 16:05:34,051 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:05:37,064 WARN received SIGTERM indicating exit request
+2020-09-20 16:05:37,066 INFO waiting for typeidea_0, typeidea_1 to die
+2020-09-20 16:05:38,794 INFO stopped: typeidea_1 (exit status 1)
+2020-09-20 16:05:39,850 INFO stopped: typeidea_0 (exit status 0)
+2020-09-20 16:06:26,097 INFO RPC interface 'supervisor' initialized
+2020-09-20 16:06:26,098 INFO RPC interface 'supervisor' initialized
+2020-09-20 16:06:26,098 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2020-09-20 16:06:26,107 INFO daemonizing the supervisord process
+2020-09-20 16:06:26,109 INFO supervisord started with pid 12504
+2020-09-20 16:06:27,116 INFO spawned: 'typeidea_0' with pid 12505
+2020-09-20 16:06:27,138 INFO spawned: 'typeidea_1' with pid 12506
+2020-09-20 16:06:28,140 INFO success: typeidea_0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:06:28,140 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:06:34,341 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:06:35,345 INFO spawned: 'typeidea_1' with pid 12519
+2020-09-20 16:06:37,480 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:06:44,426 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:06:45,433 INFO spawned: 'typeidea_1' with pid 12533
+2020-09-20 16:06:46,986 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:06:51,432 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:06:51,442 INFO spawned: 'typeidea_1' with pid 12537
+2020-09-20 16:06:53,004 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:06:58,089 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:06:59,095 INFO spawned: 'typeidea_1' with pid 12540
+2020-09-20 16:07:00,620 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:07:05,709 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:07:06,715 INFO spawned: 'typeidea_1' with pid 12555
+2020-09-20 16:07:08,220 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:07:13,296 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:07:14,302 INFO spawned: 'typeidea_1' with pid 12558
+2020-09-20 16:07:15,899 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:07:20,990 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:07:21,995 INFO spawned: 'typeidea_1' with pid 12561
+2020-09-20 16:07:23,630 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:07:28,717 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:07:29,724 INFO spawned: 'typeidea_1' with pid 12564
+2020-09-20 16:07:31,254 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:07:36,346 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:07:37,352 INFO spawned: 'typeidea_1' with pid 12567
+2020-09-20 16:07:38,867 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:07:43,965 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:07:45,012 INFO spawned: 'typeidea_1' with pid 12570
+2020-09-20 16:07:46,499 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:07:51,608 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:07:52,614 INFO spawned: 'typeidea_1' with pid 12573
+2020-09-20 16:07:54,147 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:07:59,229 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:08:00,236 INFO spawned: 'typeidea_1' with pid 12576
+2020-09-20 16:08:01,765 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:08:06,855 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:08:07,862 INFO spawned: 'typeidea_1' with pid 12579
+2020-09-20 16:08:09,406 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:08:14,494 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:08:15,501 INFO spawned: 'typeidea_1' with pid 12582
+2020-09-20 16:08:17,051 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:08:22,127 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:08:23,134 INFO spawned: 'typeidea_1' with pid 12585
+2020-09-20 16:08:24,710 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:08:29,797 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:08:30,803 INFO spawned: 'typeidea_1' with pid 12589
+2020-09-20 16:08:32,315 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:08:37,401 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:08:38,408 INFO spawned: 'typeidea_1' with pid 12592
+2020-09-20 16:08:39,932 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:08:45,023 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:08:46,038 INFO spawned: 'typeidea_1' with pid 12604
+2020-09-20 16:08:47,566 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:08:52,665 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:08:53,671 INFO spawned: 'typeidea_1' with pid 12607
+2020-09-20 16:08:55,198 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:09:00,275 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:09:01,279 INFO spawned: 'typeidea_1' with pid 12610
+2020-09-20 16:09:02,838 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:09:07,921 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:09:08,928 INFO spawned: 'typeidea_1' with pid 12613
+2020-09-20 16:09:10,432 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:09:15,530 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:09:16,539 INFO spawned: 'typeidea_1' with pid 12617
+2020-09-20 16:09:18,045 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:09:23,117 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:09:24,124 INFO spawned: 'typeidea_1' with pid 12620
+2020-09-20 16:09:25,643 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:09:30,733 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:09:31,737 INFO spawned: 'typeidea_1' with pid 12623
+2020-09-20 16:09:33,241 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:09:38,313 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:09:39,318 INFO spawned: 'typeidea_1' with pid 12626
+2020-09-20 16:09:40,878 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:09:45,961 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:09:46,966 INFO spawned: 'typeidea_1' with pid 12633
+2020-09-20 16:09:48,571 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:09:53,639 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:09:54,644 INFO spawned: 'typeidea_1' with pid 12636
+2020-09-20 16:09:56,209 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:10:01,303 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:10:02,310 INFO spawned: 'typeidea_1' with pid 12639
+2020-09-20 16:10:03,890 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:10:08,968 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:10:09,973 INFO spawned: 'typeidea_1' with pid 12642
+2020-09-20 16:10:11,736 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:10:16,819 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:10:17,826 INFO spawned: 'typeidea_1' with pid 12659
+2020-09-20 16:10:19,396 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:10:24,470 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:10:25,477 INFO spawned: 'typeidea_1' with pid 12664
+2020-09-20 16:10:26,986 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:10:32,063 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:10:33,067 INFO spawned: 'typeidea_1' with pid 12667
+2020-09-20 16:10:34,915 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:10:39,982 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:10:40,986 INFO spawned: 'typeidea_1' with pid 12691
+2020-09-20 16:10:42,591 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:10:47,701 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:10:48,707 INFO spawned: 'typeidea_1' with pid 12696
+2020-09-20 16:10:50,248 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:10:55,322 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:10:56,328 INFO spawned: 'typeidea_1' with pid 12708
+2020-09-20 16:10:57,839 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:11:02,950 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:11:03,954 INFO spawned: 'typeidea_1' with pid 12711
+2020-09-20 16:11:05,947 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:11:11,028 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:11:12,033 INFO spawned: 'typeidea_1' with pid 12723
+2020-09-20 16:11:13,587 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:11:18,687 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:11:19,693 INFO spawned: 'typeidea_1' with pid 12735
+2020-09-20 16:11:21,527 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:11:26,597 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:11:27,601 INFO spawned: 'typeidea_1' with pid 12739
+2020-09-20 16:11:29,111 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:11:34,193 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:11:35,200 INFO spawned: 'typeidea_1' with pid 12742
+2020-09-20 16:11:36,783 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:11:41,869 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:11:42,874 INFO spawned: 'typeidea_1' with pid 12746
+2020-09-20 16:11:44,460 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:11:49,530 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:11:49,549 INFO spawned: 'typeidea_1' with pid 12749
+2020-09-20 16:11:51,106 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:11:56,174 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:11:57,182 INFO spawned: 'typeidea_1' with pid 12752
+2020-09-20 16:11:58,691 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:12:02,884 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:12:02,908 INFO spawned: 'typeidea_1' with pid 12779
+2020-09-20 16:12:04,831 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:12:09,913 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:12:10,923 INFO spawned: 'typeidea_1' with pid 12782
+2020-09-20 16:12:12,507 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:12:17,594 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:12:18,599 INFO spawned: 'typeidea_1' with pid 12785
+2020-09-20 16:12:20,084 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:12:24,600 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:12:24,603 INFO spawned: 'typeidea_1' with pid 12800
+2020-09-20 16:12:26,186 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:12:31,257 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:12:32,264 INFO spawned: 'typeidea_1' with pid 12803
+2020-09-20 16:12:33,809 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:12:38,885 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:12:39,891 INFO spawned: 'typeidea_1' with pid 12806
+2020-09-20 16:12:41,399 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:12:46,476 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:12:47,484 INFO spawned: 'typeidea_1' with pid 12809
+2020-09-20 16:12:48,992 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:12:54,083 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:12:55,087 INFO spawned: 'typeidea_1' with pid 12831
+2020-09-20 16:12:56,657 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:13:01,720 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:13:02,725 INFO spawned: 'typeidea_1' with pid 12834
+2020-09-20 16:13:04,244 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:13:09,335 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:13:10,343 INFO spawned: 'typeidea_1' with pid 12850
+2020-09-20 16:13:11,949 INFO success: typeidea_1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-09-20 16:13:17,050 INFO exited: typeidea_1 (exit status 1; not expected)
+2020-09-20 16:13:18,058 INFO spawned: 'typeidea_1' with pid 12853
