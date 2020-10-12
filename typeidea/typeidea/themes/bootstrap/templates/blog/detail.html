@@ -10,7 +10,6 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 {#<script type="text/javascript" charset="utf-8" src="{% static  'js/detail.js' %}"></script>#}
 <script>hljs.initHighlightingOnLoad();</script>
-{% endblock %}
 <style type="text/css">
     a:visited{
         color:#000;
@@ -22,6 +21,8 @@
         color:red;
     }
 </style>
+{% endblock %}
+
 {% block main %}
     {% if post %}
     <h1>{{ post.title }}</h1>

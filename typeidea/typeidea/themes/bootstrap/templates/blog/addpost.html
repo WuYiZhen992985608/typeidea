@@ -12,7 +12,6 @@
     <style></style>
     <link href="http://simg.sinajs.cn/blog7style/css/blog/newblog.css" type="text/css" rel="stylesheet" />
     <link href="http://simg.sinajs.cn/blog7style/css/common/editor.css" type="text/css" rel="stylesheet" />
-
     <link href="http://simg.sinajs.cn/blog7newtpl/css/30/30_1/t.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
@@ -314,3 +313,319 @@ $UA:"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Ge
         SinaBlog680.staticBox(slotArr, sourceArr);
 </script>
 </html>
+
+
+{#{% extends "./base.html" %}#}
+{#{% load static from staticfiles %}#}
+{#{% block title %} 写博客 {% endblock %}#}
+{#{% block extra_head %}#}
+{#    <link href="http://simg.sinajs.cn/blog7style/css/blog/newblog.css" type="text/css" rel="stylesheet" />#}
+{#    <link href="http://simg.sinajs.cn/blog7style/css/common/editor.css" type="text/css" rel="stylesheet" />#}
+{#    <link href="http://simg.sinajs.cn/blog7newtpl/css/30/30_1/t.css" type="text/css" rel="stylesheet" />#}
+{#    <script type="text/javascript">#}
+{#            if (self != top) {#}
+{#              window.top.location = window.self.location;#}
+{#            }#}
+{#    </script>#}
+{#{% endblock %}#}
+{##}
+{#{% block main %}#}
+{#    <div id="box">#}
+{#    <div class="sinabloga">#}
+{#        <div class="sinablogb">#}
+{#    <div class="sinablogbody">#}
+{#        <div class="SG_colW95 SG_colFirst">#}
+{#                        <div class="SG_conn">#}
+{#                            <div class="SG_connHead">#}
+{#                                <span class="title">发博文</span>#}
+{#                                <span class="edit">#}
+{#                                    <span class="tip_r" >#}
+{#                <strong id="SinaBlog_SLOT_40"></strong></span><span class="tip_r" ><strong id="SinaBlog_SLOT_44"></strong>#}
+{#                                        </span><a class="CP_a_fuc" href="http://help.sina.com.cn/?id=25" target="_blank">[<cite>帮助</cite>]</a>#}
+{#                                </span>#}
+{#                            </div>#}
+{#                            <div class="SG_connBody">#}
+{#                                <form id="editorForm" method="post" target="fileFrame" action="http://control.blog.sina.com.cn/admin/article/article_post.php">#}
+{#                                    <input type="hidden" name="ptype" id="ptype" value=""/>#}
+{#                                    <input type="hidden" name="teams" id="teams" value=""/>#}
+{#                                    <input type="hidden" name="worldcuptags" id="worldcuptags" value=""/>#}
+{#                                    <input type="hidden" name="timestamp" id="timestamp" value="2020-10-12 15" disabled/>#}
+{#                                    <input type="hidden" name="album" id="SinaPhotoAlbumList" />#}
+{#                                    <input type="hidden" name="album_cite" id="SinaPhotoAlbumCiteList" />#}
+{#                                    <input type="hidden" name="blog_id" id="blog_id" value=""/>#}
+{#                                    <input type="hidden" name="is_album" id="is_album" value="0"/>#}
+{#                                    <input type="hidden" name="old365" value="0"/>#}
+{#                                    <input type="hidden" name="stag" value=""/>#}
+{#                                    <input type="hidden" name="sno" value=""/>#}
+{#                                    <input type="hidden" name="book_worksid" value=""/>#}
+{#                                    <input type="hidden" name="channel_id" value=""/>#}
+{#                                    <input type="hidden" name="url" value=""/>#}
+{#                                    <input type="hidden" name="channel" value=""/>#}
+{#                                    <input type="hidden" name="newsid" value=""/>#}
+{#                                    <input type="hidden" name="fromuid" value=""/>#}
+{#                                    <input type="hidden" name="wid" value=""/>#}
+{#                                    <input type="hidden" name="articletj" value=""/>#}
+{#                                    <input type="hidden" name="vtoken" value="41fe0105de04022001bd8ee9ac9272c2"/>#}
+{#                                    <input type="hidden" name="is_media" id="is_media" value="0"/>#}
+{#                                    <input type="hidden" name="is_stock" id="is_stock" value="0"/>#}
+{#                                    <input type="hidden" name="is_tpl" id="is_tpl" value="0"/>#}
+{#                                    <input type="hidden" name="assoc_article" id="assoc_article" value=""/>#}
+{#                                    <input type="hidden" name="assoc_style" id="assoc_style" value="0"/>#}
+{#                                    <input type="hidden" name="assoc_article_data" id="assoc_article_data" value=""/>#}
+{#                                    <input type="hidden" name="article_BGM" id="article_BGM" value=""/>#}
+{#                                    <input type="hidden" name="xRankStatus" id="xRankStatus" value=""/>#}
+{#                                    <input type="hidden" name="commentGlobalSwitch" id="commentGlobalSwitch" value=""/>#}
+{#                                    <input type="hidden" name="commenthideGlobalSwitch" id="commenthideGlobalSwitch" value=""/>#}
+{#                                    <input type="hidden" name="articleStatus_preview" id="articleStatus_preview" value="1"/>#}
+{#                                    <input type="hidden" name="source" id="source" value=""/>#}
+{#                                    <input type="hidden" name="topic_id" id="topic_id" value="0"/>#}
+{#                                    <input type="hidden" name="topic_channel" id="topic_channel" value="0"/>#}
+{#                                    <input type="hidden" name="topic_more" id="topic_more" value=""/>#}
+{#                                    <input type="hidden" name="utf8" value="1"/>#}
+{#                                    <input type="hidden" name="conlen" id="conlen" value=""/>#}
+{#                                    <input type="hidden" name="date_pub" id="date_pub" value="2020-10-12"/>#}
+{#                                    <input type="hidden" id="articleTime" name="time" value="15:43:34"/>#}
+{#									<input type="hidden" id="is_new_editor" name="new_time" value=""/>#}
+{#                                    <!--test-->#}
+{#                                    <input type="hidden" name="isTimed" id="isTimed" value="0"/>#}
+{#                                    <input type="hidden" name="immediatepub" id="immediatepub" value=0 />#}
+{#                                    <!-- 内容开始 -->#}
+{#                                    <div class="blogEditorWrap">#}
+{#                                        <div class="fWrap" style=" padding-bottom:8px;">#}
+{#                                            <ul>#}
+{#                                                <li><span class="cTit">标题：</span>#}
+{#                                                    <div class="cInfo">#}
+{#                                                        <input id="articleTitle" name="blog_title" type="text" size="96" class="Fm_input1" value=""/>#}
+{#                                                    </div>#}
+{#                                                </li>#}
+{#                                            </ul>#}
+{#                                        </div>#}
+{#                                        <div id="SinaEditor" class="SinaEditor">#}
+{#                                            <!-- 简版工具条 -->#}
+{#                                            <div class="base_tools">#}
+{#                                                <div class="base_tools_opacity" id="base_tools">#}
+{#                                                </div>#}
+{#                                                <div class="ChangeOpt"><a id="SinaEditor_Prolink" href="javascript:void(0);" unselectable="on" onclick="return false;">切换到更多功能</a></div>#}
+{#                                            </div>#}
+{#                                            <!-- 专业工具条 -->#}
+{#                                            <div class="pro_tools" style="display: none;">#}
+{#                                                <div class="pro_tools_opacity" id="pro_tools">#}
+{##}
+{#                                                </div>#}
+{#                                                <div class="ChangeOpt"><a id="SinaEditor_Baselink" href="javascript:void(0);" unselectable="on" onclick="return false;">切换到简单功能</a></div>#}
+{#                                            </div>#}
+{#                                            <div class="EditorContent">#}
+{#                                                <div class="EditorBoxLeft">#}
+{#                                                    <div class="main_top"></div>#}
+{##}
+{#                                                    <div class="main_middle">#}
+{#                                                        <div id="SinaEditor_Textarea">#}
+{#                                                            <textarea name="blog_body" id="SinaEditorTextarea" class="textarea" style="border:0px none;display:none;"></textarea>#}
+{#                                                        </div>#}
+{#                                                        <div id="SinaEditor_Iframe">#}
+{#                                                            <iframe class="iframe"></iframe>#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                    <div class="main_foot">#}
+{#                                                        <div class="leftFoot">#}
+{#                                                            <input type="checkbox" id="SinaEditor_59_viewcodecheckbox" disabled="disabled"/>#}
+{#                                                            <label for="SinaEditor_59_viewcodecheckbox">显示源代码</label>#}
+{#                                                        </div>#}
+{#                                                        <div class="rightFoot"><a href="javascript:void(0);" onclick="return false;">#}
+{#                                                                <div id="SinaEditor_59_viewAreaDIV" class="over"> </div>#}
+{##}
+{#                                                                <span id="height_mode">扩大编辑区域</span></a></div>#}
+{#                                                    </div>#}
+{#                                                    <img id="SinaEditor_59_ie_rsave" style="width: 1px; display: none;"/>#}
+{##}
+{#                                                </div>#}
+{#                                                <div class="EditorBoxRight" id="editor_box_right">#}
+{#													<div class="check" id="jf_check">#}
+{#													</div>#}
+{#                                                    <div class="module_1" id="shortcut">#}
+{#                                                        <h2 class="hB"><a href="javascript:void(0)" onclick="return false;"><span>常用功能</span></a></h2>#}
+{#                                                        <div style="" class="bR_info" id="shortcut_content">#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                    <!--#}
+{#                  <div class="module_2 down" id="insert_template">#}
+{#                    <h2><a href="javascript:void(0);" onclick="return false;"><span>插入模板</span></a></h2>#}
+{#                    <div class="bR_info" id="insert_template_content">#}
+{#                    </div>#}
+{#                  </div#}
+{#                  -->#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#              <div id="mobileEditor" class="SinaEditor" style="display:none"><textarea id="mobileTextarea" style="width:754px;height:350px;border:1px solid #C1C1BB;line-height:18px;padding:5px;"></textarea></div>#}
+{#                                        <div class="clearit"></div>#}
+{##}
+{#                                        <div class="insetMediaInfo" id="addWrap" style="display:none">#}
+{#                                            <div class="iItit">#}
+{#                                                <span class="leftBox">插入的内容：</span>#}
+{#                                                <div class="tabTit" id="addTab">#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <div class="iIconn" >#}
+{#                                                <div class="iIconnBg1"></div>#}
+{#                                                <div class="iIconnBg2">#}
+{#                                                    <!-- 背景音乐 -->#}
+{#                                                    <div class="myMusic" id="addMusic" style="display:none">#}
+{#                                                        <table border="0" cellspacing="0" cellpadding="0">#}
+{#                                                            <thead id="music_thead">#}
+{#                                                                <tr>#}
+{#                                                                    <th>音乐地址：</th>#}
+{#                                                                    <td><input id="music_input" type="text" class="Fm_input2" value="" /></td>#}
+{#                                                                    <td width="100"><a class="SG_aBtn SG_aBtnB" href="javascript:void(0);"><cite id="music_add">添加</cite></a></td>#}
+{#                                                                </tr>#}
+{#                                                            </thead>#}
+{#                                                            <tbody id="music_body">#}
+{#                                                                <tr>#}
+{#                                                                    <td colspan="2"><div class="flashmusic" id="music_flash"></div></td>#}
+{#                                                                </tr>#}
+{#                                                            </tbody>#}
+{#                                                        </table>#}
+{#                                                    </div>#}
+{#                                                    <!-- 插入投票 -->#}
+{#                                                    <div class="myVote" id="addVote" style="display:none">#}
+{##}
+{##}
+{#                                                    </div>#}
+{#                                                    <!-- 相关文章 -->#}
+{#                                                    <div class="myArtical" id="article_associate" style="display:none">#}
+{#                                                    </div>#}
+{#                                                    <div class="clearit"></div>#}
+{#                                                </div>#}
+{#                                                <div class="iIconnBg3"></div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{##}
+{##}
+{##}
+{#                                        <div class="fWrap">#}
+{#                                            <ul>#}
+{#                                                <li class="li1"><span class="cTit">分类：</span>#}
+{#                                                    <div class="cInfo">#}
+{#                                                        <select id="componentSelect" name="blog_class" class="sel inputWidth" style="height:24px; line-height:24px;">#}
+{#                                                            <option value="00">选择分类</option><option value="0" >私密博文</option>#}
+{#                                                        </select>#}
+{#                                                        <a href="javascript:void(0);" id="cateManageLink" class="ATextLine" onclick="return false;">创建分类</a></div>#}
+{#                                                </li>#}
+{#                                                <li><span class="cTit">标签：</span>#}
+{#                                                    <div class="cInfo">#}
+{#                                                        <input name="tag" id="articleTagInput" type="hidden" value="" autocomplete="off" />#}
+{#                                                        <div id="tInputContainer" class="Fm_input3"><em>填写标签，让更多人看到你的博文</em><input id="tInput"/></div>#}
+{#                                                        <a style="display:none"><cite id="articleTagAutoSub">自动匹配标签</cite></a>#}
+{#                                                    </div>#}
+{#                                                    <div class="blogTs blogTs_tit" id="articleTagList" >#}
+{#                                                        <div class="closex"><a href="javascript:void(0);" id="tagListClose" title="关闭" onclick="return false;">×</a></div>#}
+{#                                                        <div class="ts">标签间请用“空格”或“逗号”隔开，最多可添加5个标签。</div>#}
+{#                                                        <table class="blogTsTbl">#}
+{#                                                            <tbody>#}
+{#                                                                <tr>#}
+{#                                                                    <th>常用标签：</th>#}
+{#                                                                    <td id="hotTagList"></td>#}
+{#                                                                </tr>#}
+{#                                                                <tr>#}
+{#                                                                    <th>推荐标签：</th>#}
+{#                                                                    <td id="userTagList"></td>#}
+{#                                                                </tr>#}
+{#                                                            </tbody>#}
+{#                                                        </table>#}
+{#                                                    </div>#}
+{#                                                </li>#}
+{#                                                <li class="btn"><a href="javascript:void(0);" class="editBtn2" onclick="return false;"><cite  id="articlePostBtn">&nbsp;&nbsp;发博文&nbsp;&nbsp;</cite></a></li>#}
+{#                                                <li class="btn" style="display:none">#}
+{#                                                </li>#}
+{#                                            </ul>#}
+{#                                            </div>#}
+{#                                            </div>#}
+{#                                            <!-- 内容结束 -->#}
+{#                                            </form>#}
+{#                            </div>#}
+{#                            <div class="SG_connFoot"></div>#}
+{#                        </div>#}
+{#</div>#}
+{#    </div>#}
+{#    </div>#}
+{#    </div>#}
+{#</div>#}
+{#{% endblock %}#}
+{#{% block linkscript1 %}#}
+{#    <script type="text/javascript">#}
+{#        var scope = {#}
+{#            $uid : "1891978757",#}
+{#            $needbind: "0",#}
+{#            $uhost : "",#}
+{#            $PRODUCT_NAME : "blog7",        //blog7photo,blog7icp#}
+{#            $pageid : "editor",#}
+{#            $setDomain : false,#}
+{#            $is_photo_vip : 1,#}
+{#            $user_channel : 0,#}
+{#            $topic_channel : 0,#}
+{#            $topic_id : 0,#}
+{#            $newFontFamily : 1,#}
+{#            $private : {"pageset":0,"tj":0,"adver":0,"sms":0,"ad":0,"blogsize":0,"cms":0,"hidecms":0,"top":0,"invitationset":0,"p4p":0,"spamcms":0,"init7":1,"quote":0,"foot":0,"isprivate":0,"headpic":1,"t_sina":"1891978757","oauth_token":"87adc5e5c88dd661c1b94a7c4ba128aa","oauth_token_secret":"86d00e652d83d1b89dbce5f7131e108a","uname":"","p_push_t":"1","p_get_t":"1"},#}
+{#            $ssoUseUrl : "0",#}
+{#    $UA:"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36"#}
+{#        };#}
+{#        var __SINAPRO__ = "";#}
+{#        var $pic_encrypt = "fmy7/7meq2M=RwDmMmWy2g!D727!l2f7M=m29!2DD7!wfe&2/Tww";#}
+{##}
+{#        var articleEditorCFG = {#}
+{#            /**#}
+{#             * 系统提供的Tag分类#}
+{#             * user为用户使用过的tag列表#}
+{#             * hot为系统提供的热门tag列表#}
+{#             * {Object}#}
+{#             *  {Array}#}
+{#             *  {Array}#}
+{#             */#}
+{#            articleAllTagList: {#}
+{#                user: [],#}
+{#                hot: [{label:"高考", link: "http://blog.sina.com.cn/lm/hotrank/161.html"},{label:"欧洲杯", link: "http://blog.sina.com.cn/lm/hotrank/162.html"},{label:"奥运会", link: "http://blog.sina.com.cn/lm/hotrank/164.html"}],#}
+{#                tag_Recommend:["奥运会", "暴雨", "高考", "月薪", "油价", "房价"],#}
+{#                newhot:[{"title":"\u6614\u65e5\u7684\u201c\u6563\u7247\u201d\u8bb0\u5f55","presetTag":"Qing\u8bdd\u9898  \u6563\u7247"}],#}
+{#                hotTagNick:['育儿','娱乐','星座','文化','体育','时尚','情感','汽车','美食','旅游','军事','教育','健康','股票','房产','财经','历史','收藏','时评','佛学','图片','IT'],#}
+{#                atags_info:{"atags":"0","atags_ary":{"1":"\u7956\u56fd\u7f8e\u597d\u65f6\u4ee3","2":"\u6211\u7231\u6211\u7684\u5bb6\u4e61","3":"\u6211\u7684\u4e2d\u56fd\u699c\u6837"}},#}
+{#                hotTagNum:{'育儿':'125','娱乐':'105','星座':'131','文化':'102','体育':'104','时尚':'134','情感':'149','汽车':'130','美食':'108','旅游':'127','军事':'116','教育':'122','健康':'141','股票':'111','房产':'129','财经':'153','历史':'117','收藏':'117','时评':'117','佛学':'117','图片':'117','IT':'113'}#}
+{#            },#}
+{#            servertime: "1602488614",#}
+{#            /**#}
+{#             * 本篇文章的tag列表#}
+{#             * {String}#}
+{#             */#}
+{#            articleTagList: "",#}
+{#            tagPostURL: "http://interface.blog.sina.com.cn/api/get_blog_tag.php",#}
+{#            articlePreviewURL: "http://control.blog.sina.com.cn/myblog/htmlsource/article_preview.php",#}
+{#            // 新发->草稿#}
+{#            articlePostTempURL: "http://control.blog.sina.com.cn/admin/article/article_post.php?act=3",#}
+{#            // 新发->发表#}
+{#            // 编辑->保存#}
+{#            articlePostURL: "http://control.blog.sina.com.cn/admin/article/article_post.php",#}
+{#            // 编辑草稿->草稿#}
+{#            articleEditPostTempURL: "http://control.blog.sina.com.cn/admin/article/article_edit_post.php?act=3",#}
+{#            // 编辑草稿->发表#}
+{#            articleEditPostURL: "http://control.blog.sina.com.cn/admin/article/article_edit_post.php",#}
+{#            articleStatus: "1",#}
+{#            worldcupPics: 0,#}
+{#            articleAssociate: {"total":3,"cates":{"32768":{"count":0,"name":"\u8d2d\u559c\u6b22","id":"32768"}}},#}
+{#            articleAssociateHistory: [],#}
+{#            articleBGMHistory: '',#}
+{#            articlevData: null,#}
+{#            articleActivity: null,#}
+{#            articleClassID: null#}
+{##}
+{#        };#}
+{#    </script>#}
+{#    <script type="text/javascript" src="http://sjs.sinajs.cn/blog7common/js/boot.js"></script>#}
+{#    <script type="text/javascript">__load_js();</script>#}
+{#    <script type="text/javascript">__render_page();</script>#}
+{#    <script src="http://a.tbcdn.cn/apps/top/x/sdk.js?appkey=21297358"></script>#}
+{#    <script type="text/javascript" src="http://sjs.sinajs.cn/xblogtheme/js/blog680-min.js"></script>#}
+{#    <script type="text/javascript">#}
+{#            var slotArr = ['loginBarActivity']; //广告位id#}
+{#            var sourceArr = ['SLOT_43,SLOT_47,SLOT_48'];  //广告资源id#}
+{#            SinaBlog680.staticBox(slotArr, sourceArr);#}
+{#    </script>#}
+{#{% endblock linkscript1 %}#}
