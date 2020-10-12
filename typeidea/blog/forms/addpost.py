@@ -1,8 +1,8 @@
 # 文件: comment/forms.py
-# import mistune
-# from django import forms
-#
-# from .models import Post
+import mistune
+from django import forms
+
+from blog.models import Post
 
 # 文章下面展示评论区
 # class PostForm(forms.ModelForm):
@@ -47,7 +47,7 @@
 #         fields = ['nickname','email','website','content']
 
 
-# class PostForm(forms.ModelForm):
+# class PostForm(forms.Form):
 #     title = forms.CharField(
 #         label = '标题',
 #         max_length = 255,
@@ -62,12 +62,12 @@
 #             attrs={'rows':6,'cols':60,'class':'form-control'}
 #         )
 #     )
-#
-#     content_html = forms.TextField(
-#         label = '正文',
-#         widget = forms.widgets.Textarea(
-#             attrs = {'rows':10,'cols':60,'class':'form-control'}
-#         )
-#     )
+
+    # content_html = forms.TextField(
+    #     label = '正文',
+    #     widget = forms.widgets.Textarea(
+    #         attrs = {'rows':10,'cols':60,'class':'form-control'}
+    #     )
+    # )
 
 

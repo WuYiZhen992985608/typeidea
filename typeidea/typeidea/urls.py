@@ -29,7 +29,7 @@ from blog.views import (
     SearchView,AuthorView,
     login,register,newblog,
     Favoritelist,quit,
-    changefavorite,
+    changefavorite,addpost,
 )
 from blog.rss import LatestPostFeed
 from blog.sitemap import PostSitemap
@@ -71,6 +71,7 @@ urlpatterns = [
     url(r'^favoritelist/$',Favoritelist,name='favoritelist'),
     url(r'^changefavorite/(\d+).html$',changefavorite,name='changefavorite'),
     url(r'^quit/$',quit,name='quit'),
+    url(r'^addpost/$',addpost,name='addpost'),
     url(r'^media/(?P<path>.*)',serve,{'document_root':settings.MEDIA_ROOT}),
     # url(r'^sitemap\.xml$', sitemap_views.sitemap,{'sitemaps':{'posts':PostSitemap}}),
     # url(r'^api/post/',PostList.as_view(),name='post-list'),

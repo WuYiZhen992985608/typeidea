@@ -17,14 +17,14 @@
     {% csrf_token %}
     <div class="input-group">
         <span class="input-group-addon">账号</span>
-        <input id="account" type="text" class="form-control" placeholder="账号长度为6~12个字符" aria-describedby="basic-addon1" name="userAccount">
+        <input id="acount" type="text" class="form-control" placeholder="账号长度为6~12个字符" aria-describedby="basic-addon1" name="username">
     </div>
     <span id="accounterr" class="error">账号或格式错误</span>
     <span id="checkerr" class="error">账号已被占用，请重新输入</span>
     <br/>
     <div class="input-group">
         <span class="input-group-addon">密码</span>
-        <input id="pass" type="password" class="form-control" placeholder="密码为6~16个字符" aria-describedby="basic-addon1" name="userPass">
+        <input id="pass" type="password" class="form-control" placeholder="密码为6~16个字符" aria-describedby="basic-addon1" name="password">
     </div>
     <span id="passerr" class="error">密码格式输入错误</span>
     <br/>
@@ -33,11 +33,6 @@
     <input id="passwd" type="password" class="form-control" placeholder="密码为6~16个字符" aria-describedby="basic-addon1" name="userPasswd">
     </div>
     <span id="passwderr" class="error">两次密码输入不同</span>
-    <br/>
-    <div class="input-group">
-        <span class="input-group-addon">昵称</span>
-        <input required="required" type="text" class="form-control" aria-describedby="basic-addon1" name="userName">
-    </div>
     <br/>
     <div class="input-group">
         <span class="input-group-addon">电话</span>

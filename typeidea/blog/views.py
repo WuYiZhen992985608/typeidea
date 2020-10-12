@@ -1,5 +1,6 @@
 import random,os
 import logging
+import mistune
 from datetime import date
 from django.core.cache import cache
 from django.db.models import Q,F
@@ -9,8 +10,9 @@ from django.shortcuts import get_object_or_404,render, redirect
 from config.models import SideBar
 from django.http import HttpResponse, JsonResponse
 from django.conf import settings
-from .models import Post, Tag, Category,User,Favorite
+from .models import Post, Tag, Category,MyUser,Favorite
 from blog.forms.login import LoginForm
+# from blog.forms.addpost import PostForm
 from django.http import HttpResponse
 
 from django.urls import reverse
@@ -107,8 +109,8 @@ class CommonViewMixin:
     # def get_favorites(self):
     #     if self.request.session.get('token'):
     #         token=self.request.session.get('token')
-    #         user = User.obejcts.get(userToken=token)
-    #         favorites = Favorite.objects.filter(userAccount=user.userAccount)
+    #         user = MyUser.obejcts.get(userToken=token)
+    #         favorites = Favorite.objects.filter(username=user.username)
     #     return {'favorites':favorites}
 
 
@@ -171,11 +173,11 @@ class PostDetailView(CommonViewMixin, DetailView):
         response = super().get(request,*args,**kwargs)
         # if request.session.get('token'):
         #     token = self.request.session.get('token')
-        #     user = User.objects.get(userToken=token)
+        #     user = MyUser.objects.get(userToken=token)
         #     print(request.META)
         #     blogid = request.META['PATH_INFO'].split('/')[2].split('.')[0]
         #     if 'changefavorite' in request.META['HTTP_REFERER']:
-        #         favoriter = Favorite.objects.filter(userAccount=user.userAccount).get(blogid=blogid)
+        #         favoriter = Favorite.objects.filter(username=user.username).get(blogid=blogid)
         #         print(favoriter.isDelete)
         #         favoriter.isDelete = True
         #         print(favoriter.isDelete)
@@ -260,21 +262,21 @@ def login(request):
     if request.method == 'POST':
         f = LoginForm(request.POST)
         if f.is_valid():
-            nameid = f.cleaned_data['username']
-            # print(nameid)
-            pswd = f.cleaned_data['passwd']
-            # print(pswd)
+            username = f.cleaned_data['username']
+            # print(username)
+            password = f.cleaned_data['password']
+            # print(password)
             try:
-                user = User.objects.get(userAccount=nameid)
-                if user.userPasswd != pswd:
+                user = MyUser.objects.get(username=username)
+                if user.password != password:
                     return redirect('/login/')
-            except User.DoesNotExist as e:
+            except MyUser.DoesNotExist as e:
 
                 return redirect('/login/')
             token = random.randrange(1, 100000)
             user.userToken = str(token)
             user.save()
-            request.session['username'] = user.userName
+            request.session['username'] = user.username
             request.session['token'] = user.userToken
             return redirect('/')
         else:
@@ -287,22 +289,22 @@ def login(request):
 def register(request):
     # print("+++++",request.method)
     if request.method == 'POST':
-        userAccount = request.POST.get('userAccount')
-        userPasswd = request.POST.get('userPasswd')
-        userName = request.POST.get('userName')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         userPhone = request.POST.get('userPhone')
         userAdderss = request.POST.get('userAddress')
         userRank = 0
         token = random.randrange(1,100000)
         userToken = str(token)
         f = request.FILES['userImg']
-        userImg = os.path.join(settings.MEDIA_ROOT,userAccount+'.png')
+        userImg = os.path.join(settings.MEDIA_ROOT,username+'.png')
+        cleanStatus = True
         with open(userImg,'wb') as fp:
             for data in f.chunks():
                 fp.write(data)
-        user = User.createuser(userAccount,userPasswd,userName,userPhone,userAdderss,userRank,userToken,userImg)
+        user = MyUser.createuser(password,username,userPhone,userAdderss,userImg,userRank,userToken,cleanStatus)
         user.save()
-        request.session['username'] = userName
+        request.session['username'] = username
         request.session['token'] = userToken
         return redirect('/')
     else:
@@ -326,16 +328,16 @@ def Favoritelist(request):
     # print(token)
     if token == None:
         return redirect(reverse('blog:index'))
-    user = User.objects.get(userToken=token)
+    user = MyUser.objects.get(userToken=token)
     # print('user',user)
-    userid = user.userAccount
-    favorites = Favorite.objects.filter(userAccount=userid).filter(isDelete=False)
+    username = user.username
+    favorites = Favorite.objects.filter(username=username).filter(isDelete=False)
     # print('favorites',favorites)
     bloglist = []
     for f in favorites:
         bloglist.append(Post.objects.get(id=f.blogid))
     # print('bloglist',bloglist)
-    return render(request, 'blog/favoritelist.html',{'userid': userid, 'favorites': favorites, 'bloglist': bloglist})
+    return render(request, 'blog/favoritelist.html',{'username': username, 'favorites': favorites, 'bloglist': bloglist})
 
 def changefavorite(request,flag):
     # print('<><><><>')
@@ -347,10 +349,10 @@ def changefavorite(request,flag):
     # print(request.method)
     blogid = flag
     # print(blogid)
-    user = User.objects.get(userToken=token)
+    user = MyUser.objects.get(userToken=token)
     blog = Post.objects.get(id=blogid)
     try:
-        favoriter = Favorite.objects.get(noRepeat=user.userAccount+blogid)
+        favoriter = Favorite.objects.get(noRepeat=user.username+blogid)
         if favoriter.isDelete == False:
             # print('-', request.META['HTTP_REFERER'])
             # print('-', request.META['PATH_INFO'])
@@ -365,10 +367,16 @@ def changefavorite(request,flag):
             # print('-', favoriter.isDelete)
             return render(request, 'blog/collect.html', {'post': blog})
     except:
-        favoriter = Favorite.createfavorite(user.userAccount,blogid,user.userAccount+blogid,False)
+        favoriter = Favorite.createfavorite(user.username,blogid,user.username+blogid,False)
         favoriter.save()
         # print(blog.title)
         return render(request, 'blog/collect.html', {'post': blog})
 
-
+def addpost(request):
+    # print('meta', request.META)
+    if request.method == 'POST':
+        return HttpResponse('提交文章')
+    else:
+        # print('_+_+')
+        return render(request,'blog/addpost.html')
 

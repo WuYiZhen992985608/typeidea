@@ -3,11 +3,59 @@ from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.db import models
 from django.utils.functional import cached_property
-# from django.utils import six, timezone
-# from django.utils.translation import ugettext_lazy as _
-# from django.contrib.auth.validators import ASCIIUsernameValidator, UnicodeUsernameValidator
+from django.utils import six, timezone
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.validators import ASCIIUsernameValidator, UnicodeUsernameValidator
 
-
+class MyUser(User):
+    # password = models.CharField(_('password'), max_length=128)
+    # last_login = models.DateTimeField(_('last login'), blank=True, null=True)
+    # is_superuser = models.BooleanField(
+    #     _('superuser status'),
+    #     default=False,
+    #     help_text=_(
+    #         'Designates that this user has all permissions without '
+    #         'explicitly assigning them.'
+    #     ),
+    # )
+    # username_validator = UnicodeUsernameValidator() if six.PY3 else ASCIIUsernameValidator()
+    # username = models.CharField(
+    #     _('username'),
+    #     max_length=150,
+    #     unique=True,
+    #     help_text=_('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'),
+    #     validators=[username_validator],
+    #     error_messages={
+    #         'unique': _("A user with that username already exists."),
+    #     },
+    # )
+    # first_name = models.CharField(_('first name'), max_length=30, blank=True)
+    # last_name = models.CharField(_('last name'), max_length=30, blank=True)
+    # email = models.EmailField(_('email address'), blank=True)
+    # is_staff = models.BooleanField(
+    #     _('staff status'),
+    #     default=False,
+    #     help_text=_('Designates whether the user can log into this admin site.'),
+    # )
+    # is_active = models.BooleanField(
+    #     _('active'),
+    #     default=True,
+    #     help_text=_(
+    #         'Designates whether this user should be treated as active. '
+    #         'Unselect this instead of deleting accounts.'
+    #     ),
+    # )
+    # date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
+    userPhone = models.CharField(max_length=20)
+    userAdderss = models.CharField(max_length=100)
+    userImg = models.CharField(max_length=150)
+    userRank = models.IntegerField()
+    userToken = models.CharField(max_length=200)
+    cleanStatus = models.BooleanField(default=True,verbose_name="注销")
+    @classmethod
+    def createuser(cls,passwd,name,phone,adderss,img,rank,token,clean_status):
+        u = cls(password=passwd,username=name,userPhone=phone,userAdderss=adderss,userImg=img,userRank=rank,userToken=token,cleanStatus=clean_status)
+        return u
 
 class Category(models.Model):
     STATUS_NORMAL = 1
@@ -21,7 +69,7 @@ class Category(models.Model):
     status = models.PositiveIntegerField(default=STATUS_NORMAL,choices=STATUS_ITEMS,verbose_name='状态')
     is_nav = models.BooleanField(default=False,verbose_name='是否为导航')
     # category是依附于user的，所有一个category只能属于一个user,参考page87数据关系模型；
-    owner = models.ForeignKey(User,verbose_name='作者',on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(MyUser,verbose_name='作者',on_delete=models.DO_NOTHING)
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
 
     class Meta:
@@ -43,7 +91,7 @@ class Tag(models.Model):
 
     name = models.CharField(max_length=50, verbose_name='名称')
     status = models.PositiveIntegerField(default=STATUS_NORMAL, choices=STATUS_ITEMS, verbose_name='状态')
-    owner = models.ForeignKey(User, verbose_name='作者',on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(MyUser, verbose_name='作者',on_delete=models.DO_NOTHING)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
 
     class Meta:
@@ -71,7 +119,7 @@ class Post(models.Model):
     is_md = models.BooleanField(default=True,verbose_name="markdown语法")
     category = models.ForeignKey(Category,verbose_name='分类',on_delete=models.DO_NOTHING)
     tag = models.ManyToManyField(Tag,verbose_name='标签')
-    owner = models.ForeignKey(User,verbose_name='作者',on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(MyUser,verbose_name='作者',on_delete=models.DO_NOTHING)
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
     pv = models.PositiveIntegerField(default=1)
     uv = models.PositiveIntegerField(default=1)
@@ -152,28 +200,15 @@ class Post(models.Model):
         print('tgstgstgs',tgs)
         return tgs
 
-class User(models.Model):
-    userAccount = models.CharField(max_length=20,unique=True)
-    userPasswd = models.CharField(max_length=20)
-    userName = models.CharField(max_length=20)
-    userPhone = models.CharField(max_length=20)
-    userAdderss = models.CharField(max_length=100)
-    userImg = models.CharField(max_length=150)
-    userRank = models.IntegerField()
-    userToken = models.CharField(max_length=200)
-    cleanStatus = models.BooleanField(default=True,verbose_name="注销")
-    @classmethod
-    def createuser(cls,account,passwd,name,phone,adderss,img,rank,token,clean_status):
-        u = cls(userAccount= account,userPasswd=passwd,userName=name,userPhone=phone,userAdderss=adderss,userImg=img,userRank=rank,userToken=token,cleanStatus=clean_status)
-        return u
+
 
 class Favorite(models.Model):
-    userAccount = models.CharField(max_length=20)
+    username = models.CharField(max_length=20)
     blogid = models.CharField(max_length=10)
     isDelete = models.BooleanField(default=False)
     noRepeat = models.CharField(max_length=30,default=1)
     @classmethod
-    def createfavorite(cls,userAccount,blogid,noRepeat,isDelete):
-        f = cls(userAccount=userAccount,blogid=blogid,noRepeat=noRepeat,isDelete=isDelete)
+    def createfavorite(cls,username,blogid,noRepeat,isDelete):
+        f = cls(username=username,blogid=blogid,noRepeat=noRepeat,isDelete=isDelete)
         return f
 
