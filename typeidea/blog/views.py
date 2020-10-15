@@ -1,4 +1,5 @@
 import random,os
+import operator
 import logging
 import mistune
 from datetime import date
@@ -76,8 +77,12 @@ class CommonViewMixin:
         })
         context.update(self.get_navs())
         context.update(self.get_loginstatus())
+        # context.update(self.get_post_dict())
         # context.update(self.get_favorites())
         # print('++++++',context)
+        # for k, v in context.items:
+        #     print(k,':',v)
+        # print(context)
         return context
 
     def get_sidebars(self):
@@ -106,6 +111,17 @@ class CommonViewMixin:
             loginstatus = '未登录'
         return {'loginstatus':loginstatus}
 
+    # def get_post_dict(self):
+    #     postlist = Post.objects.filter(status=Post.STATUS_NORMAL)
+    #     post_dict = {}
+    #     post_title_list = []
+    #     post_id_list = []
+    #     for i in postlist:
+    #         post_title_list.append(i.title)
+    #         post_id_list.append(i.id)
+    #         post_dict.update(zip(post_title_list,post_id_list))
+    #     print(post_dict)
+    #     return post_dict
     # def get_favorites(self):
     #     if self.request.session.get('token'):
     #         token=self.request.session.get('token')
@@ -168,20 +184,62 @@ class PostDetailView(CommonViewMixin, DetailView):
     context_object_name = 'post'
     pk_url_kwarg = 'post_id'
 
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        post_id = self.object.id
+        # print(self.object.id)
+        post_dict = {}
+        post_title_list = []
+        post_id_list = []
+        # print('len',len(self.queryset))
+        queryset_length = len(self.queryset)
+        if post_id == len(self.queryset):
+            post_title_list.append(self.queryset[queryset_length-post_id+1].title)
+            post_id_list.append(self.queryset[queryset_length-post_id+1].id)
+            post_title_list.append('后面没有了')
+            post_id_list.append(post_id+1)
+            mark = 2
+            # print(post_id_list)
+            # print(post_title_list)
+            post_dict.update(zip(post_title_list, post_id_list))
+            post_dict2 = sorted(post_dict.items(), key=operator.itemgetter(1), reverse=False)
+            # print(post_dict2)
+            # print(type(post_dict2))
+            context.update({'post_list': post_dict2, 'mark': mark})
+            # print(context)
+        elif post_id == 1:
+            post_title_list.append('前面没有了')
+            post_id_list.append(0)
+            post_title_list.append(self.queryset[queryset_length - post_id-1].title)
+            post_id_list.append(self.queryset[queryset_length - post_id-1].id)
+            mark = 0
+            # print(post_id_list)
+            # print(post_title_list)
+            post_dict.update(zip(post_title_list, post_id_list))
+            post_dict2 = sorted(post_dict.items(), key=operator.itemgetter(1), reverse=False)
+            # print(post_dict2)
+            # print(type(post_dict2))
+            context.update({'post_list': post_dict2, 'mark': mark})
+            # print(context)
+        else:
+            post_title_list.append(self.queryset[queryset_length - post_id + 1].title)
+            post_id_list.append(self.queryset[queryset_length - post_id + 1].id)
+            post_title_list.append(self.queryset[queryset_length - post_id - 1].title)
+            post_id_list.append(self.queryset[queryset_length - post_id - 1].id)
+            mark = 1
+            # print(post_id_list)
+            # print(post_title_list)
+            post_dict.update(zip(post_title_list, post_id_list))
+            post_dict2 = sorted(post_dict.items(), key=operator.itemgetter(1), reverse=False)
+            # print(post_dict2)
+            # print(type(post_dict2))
+            context.update({'post_list': post_dict2, 'mark': mark})
+            # print(context)
+        return context
+
     # 在get请求中添加处理pv,uv的函数
     def get(self,request,*args,**kwargs):
         response = super().get(request,*args,**kwargs)
-        # if request.session.get('token'):
-        #     token = self.request.session.get('token')
-        #     user = MyUser.objects.get(userToken=token)
-        #     print(request.META)
-        #     blogid = request.META['PATH_INFO'].split('/')[2].split('.')[0]
-        #     if 'changefavorite' in request.META['HTTP_REFERER']:
-        #         favoriter = Favorite.objects.filter(username=user.username).get(blogid=blogid)
-        #         print(favoriter.isDelete)
-        #         favoriter.isDelete = True
-        #         print(favoriter.isDelete)
-        #         favoriter.save()
         self.handle_visited()
         # Post.objects.filter(pk=self.object.id).update(pv=F('pv')+1,uv=F('uv')+1)
         return response
@@ -211,8 +269,6 @@ class PostDetailView(CommonViewMixin, DetailView):
 
         elif increase_uv:
             Post.objects.filter(pk=self.object.id).update(uv=F('uv')+1)
-
-
 
         # from django.db import connection
         # print(connection.queries)

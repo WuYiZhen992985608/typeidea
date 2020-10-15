@@ -43,6 +43,33 @@
             <hr/>
             <div><a id="collect" class="{{ post.id }}" href="{% url 'changefavorite' post.id %}"><span>喜欢否</span></a></div>
 {#            <div><a id="collect" class="{{ post.id }}" href="{% url 'changefavorite' post.id %}"><span>收藏</span></a></div>#}
+            <div>
+                <ul>
+
+                    {% if mark == 2 %}
+                        <li>
+                            <a href="{% url 'post-detail' post_list.0.1 %}" style="margin-right:10px">上一篇：{{ post_list.0.0 }}</a>
+                         </li>
+                        <li>
+                            <a href="#" style="margin-right:10px">下一篇：{{ post_list.1.0 }}</a>
+                        </li>
+                    {% elif mark == 0 %}
+                        <li>
+                            <a href="#" style="margin-right:10px">上一篇：{{ post_list.0.0 }}</a>
+                         </li>
+                        <li>
+                            <a href="{% url 'post-detail' post_list.1.1 %}" style="margin-right:10px">下一篇：{{ post_list.1.0 }}</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'post-detail' post_list.0.1 %}" style="margin-right:10px">上一篇：{{ post_list.0.0 }}</a>
+                         </li>
+                        <li>
+                            <a href="{% url 'post-detail' post_list.1.1 %}" style="margin-right:10px">下一篇：{{ post_list.1.0 }}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
         {% endblock collect %}
 
     {% endif %}
