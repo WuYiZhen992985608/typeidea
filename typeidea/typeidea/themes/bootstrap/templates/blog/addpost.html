@@ -18,18 +18,18 @@
 <div id="box">
     <div class="sinabloga">
         <div class="sinablogb">
-    <div class="sinablogbody">
-        <div class="SG_colW95 SG_colFirst">
-                        <div class="SG_conn">
-                            <div class="SG_connHead">
-                                <span class="title">发博文</span>
-                                <span class="edit">
-                                    <span class="tip_r" >
-                <strong id="SinaBlog_SLOT_40"></strong></span><span class="tip_r" ><strong id="SinaBlog_SLOT_44"></strong>
-                                        </span><a class="CP_a_fuc" href="http://help.sina.com.cn/?id=25" target="_blank">[<cite>帮助</cite>]</a>
-                                </span>
-                            </div>
-                            <div class="SG_connBody">
+            <div class="sinablogbody">
+                <div class="SG_colW95 SG_colFirst">
+                    <div class="SG_conn">
+                        <div class="SG_connHead">
+                            <span class="title">发博文</span>
+                            <span class="edit">
+                                <span class="tip_r" ><strong id="SinaBlog_SLOT_40"></strong></span>
+                                <span class="tip_r" ><strong id="SinaBlog_SLOT_44"></strong></span>
+                                <a class="CP_a_fuc" href="http://help.sina.com.cn/?id=25" target="_blank">[<cite>帮助</cite>]</a>
+                            </span>
+                        </div>
+                        <div class="SG_connBody">
                                 <form id="editorForm" method="post" target="fileFrame" action="http://control.blog.sina.com.cn/admin/article/article_post.php">
                                     <input type="hidden" name="ptype" id="ptype" value=""/>
                                     <input type="hidden" name="teams" id="teams" value=""/>
@@ -80,7 +80,12 @@
                                             <ul>
                                                 <li><span class="cTit">标题：</span>
                                                     <div class="cInfo">
-                                                        <input id="articleTitle" name="blog_title" type="text" size="96" class="Fm_input1" value=""/>
+                                                        <input id="articleTitle" name="blog_title" type="text" size="128" class="Fm_input1" value=""/>
+                                                    </div>
+                                                </li>
+                                                <li><span class="cTit">摘要：</span>
+                                                    <div class="cInfo">
+                                                        <input id="articleDesc" name="blog_desc" type="text" size="1024" class="Fm_input1" value=""/>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -88,21 +93,17 @@
                                         <div id="SinaEditor" class="SinaEditor">
                                             <!-- 简版工具条 -->
                                             <div class="base_tools">
-                                                <div class="base_tools_opacity" id="base_tools">
-                                                </div>
+                                                <div class="base_tools_opacity" id="base_tools"></div>
                                                 <div class="ChangeOpt"><a id="SinaEditor_Prolink" href="javascript:void(0);" unselectable="on" onclick="return false;">切换到更多功能</a></div>
                                             </div>
                                             <!-- 专业工具条 -->
                                             <div class="pro_tools" style="display: none;">
-                                                <div class="pro_tools_opacity" id="pro_tools">
-
-                                                </div>
+                                                <div class="pro_tools_opacity" id="pro_tools"></div>
                                                 <div class="ChangeOpt"><a id="SinaEditor_Baselink" href="javascript:void(0);" unselectable="on" onclick="return false;">切换到简单功能</a></div>
                                             </div>
                                             <div class="EditorContent">
                                                 <div class="EditorBoxLeft">
                                                     <div class="main_top"></div>
-
                                                     <div class="main_middle">
                                                         <div id="SinaEditor_Textarea">
                                                             <textarea name="blog_body" id="SinaEditorTextarea" class="textarea" style="border:0px none;display:none;"></textarea>
@@ -117,39 +118,26 @@
                                                             <label for="SinaEditor_59_viewcodecheckbox">显示源代码</label>
                                                         </div>
                                                         <div class="rightFoot"><a href="javascript:void(0);" onclick="return false;">
-                                                                <div id="SinaEditor_59_viewAreaDIV" class="over"> </div>
-
-                                                                <span id="height_mode">扩大编辑区域</span></a></div>
+                                                            <div id="SinaEditor_59_viewAreaDIV" class="over"></div>
+                                                            <span id="height_mode">扩大编辑区域</span></a></div>
                                                     </div>
                                                     <img id="SinaEditor_59_ie_rsave" style="width: 1px; display: none;"/>
-
                                                 </div>
                                                 <div class="EditorBoxRight" id="editor_box_right">
-													<div class="check" id="jf_check">
-													</div>
+													<div class="check" id="jf_check"></div>
                                                     <div class="module_1" id="shortcut">
                                                         <h2 class="hB"><a href="javascript:void(0)" onclick="return false;"><span>常用功能</span></a></h2>
-                                                        <div style="" class="bR_info" id="shortcut_content">
-                                                        </div>
+                                                        <div style="" class="bR_info" id="shortcut_content"></div>
                                                     </div>
-                                                    <!--
-                  <div class="module_2 down" id="insert_template">
-                    <h2><a href="javascript:void(0);" onclick="return false;"><span>插入模板</span></a></h2>
-                    <div class="bR_info" id="insert_template_content">
-                    </div>
-                  </div
-                  -->
                                                 </div>
                                             </div>
                                         </div>
-              <div id="mobileEditor" class="SinaEditor" style="display:none"><textarea id="mobileTextarea" style="width:754px;height:350px;border:1px solid #C1C1BB;line-height:18px;padding:5px;"></textarea></div>
+                                        <div id="mobileEditor" class="SinaEditor" style="display:none"><textarea id="mobileTextarea" style="width:754px;height:350px;border:1px solid #C1C1BB;line-height:18px;padding:5px;"></textarea></div>
                                         <div class="clearit"></div>
-
                                         <div class="insetMediaInfo" id="addWrap" style="display:none">
                                             <div class="iItit">
                                                 <span class="leftBox">插入的内容：</span>
-                                                <div class="tabTit" id="addTab">
-                                                </div>
+                                                <div class="tabTit" id="addTab"></div>
                                             </div>
                                             <div class="iIconn" >
                                                 <div class="iIconnBg1"></div>
@@ -172,29 +160,24 @@
                                                         </table>
                                                     </div>
                                                     <!-- 插入投票 -->
-                                                    <div class="myVote" id="addVote" style="display:none">
-
-
-                                                    </div>
+                                                    <div class="myVote" id="addVote" style="display:none"></div>
                                                     <!-- 相关文章 -->
-                                                    <div class="myArtical" id="article_associate" style="display:none">
-                                                    </div>
+                                                    <div class="myArtical" id="article_associate" style="display:none"></div>
                                                     <div class="clearit"></div>
                                                 </div>
                                                 <div class="iIconnBg3"></div>
                                             </div>
                                         </div>
-
-
-
                                         <div class="fWrap">
                                             <ul>
                                                 <li class="li1"><span class="cTit">分类：</span>
                                                     <div class="cInfo">
                                                         <select id="componentSelect" name="blog_class" class="sel inputWidth" style="height:24px; line-height:24px;">
-                                                            <option value="00">选择分类</option><option value="0" >私密博文</option>
+                                                            <option value="00">小说</option>
+                                                            <option value="0" >音乐</option>
                                                         </select>
-                                                        <a href="javascript:void(0);" id="cateManageLink" class="ATextLine" onclick="return false;">创建分类</a></div>
+                                                        <a href="javascript:void(0);" id="cateManageLink" class="ATextLine" onclick="return false;">创建分类</a>
+                                                    </div>
                                                 </li>
                                                 <li><span class="cTit">标签：</span>
                                                     <div class="cInfo">
@@ -220,19 +203,20 @@
                                                     </div>
                                                 </li>
                                                 <li class="btn"><a href="javascript:void(0);" class="editBtn2" onclick="return false;"><cite  id="articlePostBtn">&nbsp;&nbsp;发博文&nbsp;&nbsp;</cite></a></li>
-                                                <li class="btn" style="display:none">
-                                                </li>
+{#                                                <li class="btn"><a href="/"><cite  id="articlePostBtn">&nbsp;&nbsp;发博文&nbsp;&nbsp;</cite></a></li>#}
+{#                                                <input type="submit" class="form-control" aria-describedby="basic-addon1" value="发博客">#}
+                                                <li class="btn" style="display:none"></li>
                                             </ul>
-                                            </div>
-                                            </div>
-                                            <!-- 内容结束 -->
-                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- 内容结束 -->
+                                </form>
                             </div>
-                            <div class="SG_connFoot"></div>
-                        </div>
-</div>
-    </div>
-    </div>
+                        <div class="SG_connFoot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

@@ -12,12 +12,12 @@ from django.http import HttpResponse, JsonResponse
 from django.conf import settings
 from .models import Post, Tag, Category,MyUser,Favorite
 from blog.forms.login import LoginForm
-# from blog.forms.addpost import PostForm
+from blog.forms.addpost import PostForm
 from django.http import HttpResponse
 
 from django.urls import reverse
 from django.contrib.auth import logout
-
+from django.contrib.auth.hashers import make_password,check_password
 # from comment.forms import CommentForm
 # from comment.models import Comment
 # from silk.profiling.profiler import silk_profile
@@ -266,19 +266,22 @@ def login(request):
             # print(username)
             password = f.cleaned_data['password']
             # print(password)
-            try:
-                user = MyUser.objects.get(username=username)
-                if user.password != password:
+            encoded = make_password(password)
+            # print(encoded)
+            # print(check_password(password,encoded))
+            if check_password(password,encoded):
+                try:
+                    user = MyUser.objects.get(username=username)
+                    token = random.randrange(1, 100000)
+                    user.userToken = str(token)
+                    user.save()
+                    request.session['username'] = user.username
+                    request.session['token'] = user.userToken
+                    return redirect('/')
+                except MyUser.DoesNotExist as e:
                     return redirect('/login/')
-            except MyUser.DoesNotExist as e:
-
+            else:
                 return redirect('/login/')
-            token = random.randrange(1, 100000)
-            user.userToken = str(token)
-            user.save()
-            request.session['username'] = user.username
-            request.session['token'] = user.userToken
-            return redirect('/')
         else:
             return render(request, 'blog/login.html', {'title': '登录', 'form': f, 'error': f.errors})
     else:
@@ -286,11 +289,15 @@ def login(request):
         return render(request, 'blog/login.html', {'title': '登录', 'form': f})
         # return HttpResponse("hello login")
 
+
 def register(request):
     # print("+++++",request.method)
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
+        print(password)
+        password = make_password(password)
+        print(password)
         userPhone = request.POST.get('userPhone')
         userAdderss = request.POST.get('userAddress')
         userRank = 0
@@ -373,10 +380,68 @@ def changefavorite(request,flag):
         return render(request, 'blog/collect.html', {'post': blog})
 
 def addpost(request):
+    # print("+++")
+    # print(request.method)
     # print('meta', request.META)
     if request.method == 'POST':
-        return HttpResponse('提交文章')
+        token = request.session.get('token')
+        if token == None:
+            return redirect('/login/')
+        try:
+            user = MyUser.objects.get(userToken=token)
+            # print('username',user.username)
+            title = request.POST.get('title')
+            # print('title', title)
+            desc = request.POST.get('desc')
+            # print('desc', desc)
+            category = request.POST.get('category')
+            # print(category)
+            category_instance = Category.objects.get(name=category)
+            # print(type(category_instance))
+            # print(category_instance.id)
+            status = request.POST.get('status')
+            # print(status)
+            tag = request.POST.get('tag')
+            # print(tag)
+            try:
+                tag_instance = Tag.objects.get(name=tag)
+            except:
+                tag_instance = Tag.createtag(tag, user)
+            # print(type(tag_instance))
+            is_md = request.POST.get('is_md')
+            if is_md:
+                is_md = True
+            else:
+                is_md = False
+            content_ck = request.POST.get('content_ck')
+            # print('ck', content_ck)
+            content_md = request.POST.get('content_md')
+            # print('md', content_md)
+            if is_md:
+                content = content_md
+            else:
+                content = content_ck
+            # p = Post.createpost(title, desc, content,status,category_instance.id,tag_instance.id,is_md,user.id)
+            p = Post(title=title)
+            # print(type(p))
+            p.desc = desc
+            p.content = content
+            p.status = status
+            p.is_md = is_md
+            # print("+——")
+            p.category_id = category_instance.id
+            # print("_____+")
+            # p.tag = tag_instance.id
+            p.owner_id = user.id
+            p.save()
+            return redirect('/')
+        except MyUser.DoesNotExist as e:
+            return redirect('/login/')
+            # return HttpResponse('提交文章')
     else:
         # print('_+_+')
-        return render(request,'blog/addpost.html')
+        # return render(request,'blog/addpost.html')
+        categorylist = Category.objects.filter(status=Category.STATUS_NORMAL)
+        taglist = Tag.objects.filter(status=Tag.STATUS_NORMAL)
+        return render(request,'blog/blogblock.html',{'post_form':PostForm,'categorylist':categorylist,'taglist':taglist})
 

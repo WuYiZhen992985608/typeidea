@@ -69,7 +69,7 @@ class Category(models.Model):
     status = models.PositiveIntegerField(default=STATUS_NORMAL,choices=STATUS_ITEMS,verbose_name='状态')
     is_nav = models.BooleanField(default=False,verbose_name='是否为导航')
     # category是依附于user的，所有一个category只能属于一个user,参考page87数据关系模型；
-    owner = models.ForeignKey(MyUser,verbose_name='作者',on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(User,verbose_name='作者',on_delete=models.DO_NOTHING)
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
 
     class Meta:
@@ -91,7 +91,7 @@ class Tag(models.Model):
 
     name = models.CharField(max_length=50, verbose_name='名称')
     status = models.PositiveIntegerField(default=STATUS_NORMAL, choices=STATUS_ITEMS, verbose_name='状态')
-    owner = models.ForeignKey(MyUser, verbose_name='作者',on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(User, verbose_name='作者',on_delete=models.DO_NOTHING)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
 
     class Meta:
@@ -100,6 +100,11 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+    @classmethod
+    def createtag(cls, name, owner):
+        t = cls(name=name, owner=owner)
+        return t
 
 class Post(models.Model):
     STATUS_NORMAL = 1
@@ -116,10 +121,10 @@ class Post(models.Model):
     content = models.TextField(verbose_name='正文',help_text='正文必须为MarkDown格式')
     content_html = models.TextField(verbose_name="正文html代码",blank=True,editable=False)
     status = models.PositiveIntegerField(default=STATUS_NORMAL,choices=STATUS_ITEMS,verbose_name='状态')
-    is_md = models.BooleanField(default=True,verbose_name="markdown语法")
+    is_md = models.BooleanField(default=False,verbose_name="markdown语法")
     category = models.ForeignKey(Category,verbose_name='分类',on_delete=models.DO_NOTHING)
     tag = models.ManyToManyField(Tag,verbose_name='标签')
-    owner = models.ForeignKey(MyUser,verbose_name='作者',on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(User,verbose_name='作者',on_delete=models.DO_NOTHING)
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
     pv = models.PositiveIntegerField(default=1)
     uv = models.PositiveIntegerField(default=1)
@@ -200,6 +205,10 @@ class Post(models.Model):
         print('tgstgstgs',tgs)
         return tgs
 
+    # @classmethod
+    # def createpost(cls, title, desc, content,status,category,tag,is_md,owner):
+    #     p = cls(title=title, desc=desc, content=content,status=status,category=category,tag=tag,is_md=is_md,owner=owner)
+    #     return p
 
 
 class Favorite(models.Model):

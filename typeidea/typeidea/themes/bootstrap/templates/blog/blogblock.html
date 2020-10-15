@@ -25,13 +25,156 @@
 
 {% extends "./base.html" %}
 {% load static from staticfiles %}
-
-<hr/>
-<div class="post">
-<form class="form-group" action="/addpost/" method="POST">
-    {%  csrf_token %}
-    <input name="title" type="hidden" value="{{ title }}"/>
-    {{ post_form }}
-    <input type="submit" value="写好了!"/>
-</form>
+{#<script type="text/javascript" src="/static/xadmin/vendor/jquery/jquery.js"></script>#}
+{#<script type="text/javascript">#}
+{#    window.__admin_media_prefix__ = "/static/xadmin/";#}
+{#    window.__admin_path_prefix__ = "/admin/";#}
+{#    window.__admin_language_code__ = "";#}
+{#</script>#}
+{#<script type="text/javascript" src="/admin/jsi18n/"></script>#}
+{% block main %}
+{#<div class="post">#}
+{#<form class="form-group" action="/addpost/" method="POST">#}
+{#    {%  csrf_token %}#}
+{#    <input name="title" type="hidden" value="{{ title }}"/>#}
+{#    {{ post_form }}#}
+{#    <input type="submit" value="写好了!"/>#}
+{#</form>#}
+{#</div>#}
+<div id="body-content" class="clearfix row">
+    <div id="content-block" class="col-sm-11 col-md-10">
+        <form class="exform" enctype="multipart/form-data" action="" method="post" id="post_form"><input type='hidden' name='csrfmiddlewaretoken' value='wgqR6iCXOhexTgs7vMF7Fb3WQqjEb67rlzAUXAqhoyo1Jy5XNBpsxv0HjWEu9HWL' />
+            <input type='hidden' id='_portal_key' value='blog_post_editform_portal' />
+            <input type='hidden' name='csrfmiddlewaretoken' value='wgqR6iCXOhexTgs7vMF7Fb3WQqjEb67rlzAUXAqhoyo1Jy5XNBpsxv0HjWEu9HWL' />
+            <div class="form-container row clearfix" ">
+                <div id="column-0" class="formColumn column form-column full col col-sm-12 form-horizontal"  span="12" horizontal>
+                    <div class="panel panel-default fieldset" id="box-0" >
+                        <div class="panel-body " >
+                            <div class="form-inline form-group" >
+                                <div id="div_id_title" class="form-group col-sm-6">
+                                    <label for="id_title" class="control-label  requiredField" >标题<span class="asteriskField">*</span> </label>
+                                    <div class="controls ">
+                                        <input type="text" name="title" class="text-field admintextinputwidget form-control" maxlength="255" required id="id_title" /> </div>
+                                    </div>
+                                <div id="div_id_category" class="form-group col-sm-6">
+                                    <label for="id_category" class="control-label  requiredField">分类<span class="asteriskField">*</span> </label>
+                                    <div class="controls ">
+                                        <select name="category" class="modelselect2 form-control" required id="id_category" data-autocomplete-light-url="/category-autocomplete/" data-autocomplete-light-function="select2">
+                                            {% for cate in categorylist %}
+                                                <option value={{ cate }} selected>{{ cate }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="div_id_status" class="form-group">
+                                    <label for="id_status" class="control-label  requiredField">&nbsp;&nbsp;&nbsp;状态<span class="asteriskField">*</span> </label>
+                                    <div class="controls ">
+                                        <select name="status" class="adminselectwidget form-control" id="id_status">
+                                            <option value="1" selected>正常</option>
+                                            <option value="0">删除</option>
+                                            <option value="2">草稿</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            <div id="div_id_tag" class="form-group">
+                                    <label for="id_tag" class="control-label  requiredField">&nbsp;&nbsp;&nbsp;标签<span class="asteriskField">*</span> </label>
+                                    <div class="controls ">
+                                        <select name="tag" class="modelselect2multiple form-control" required id="id_tag" data-autocomplete-light-url="/tag-autocomplete/" data-autocomplete-light-function="select2" multiple="multiple">
+                                            {% for tag in taglist %}
+                                                <option value={{ tag }} selected>{{ tag }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <input type="text" name="tag" class="text-field admintextinputwidget form-control" maxlength="32" required id="id_tag" /> </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                <div class="panel panel-default fieldset" id="box-1" >
+                    <div class="panel-body " > <div id="div_id_desc" class="form-group">
+                        <label for="id_desc" class="control-label ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;摘要</label>
+                        <div class="controls ">
+                            <textarea name="desc" cols="40" rows="10" class="textarea form-control" id="id_desc"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+{#                    <div id="div_id_is_md" class="checkbox">#}
+{#                        <label for="id_is_md" class=""><input type="checkbox" name="is_md" class="checkboxinput" id="id_is_md" checked/>富文本编辑器</label>#}
+{#                    </div>#}
+                </div>
+                    <div id="div_id_content_ck" class="form-group"> <label for="id_content_ck" class="control-label ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正文</label>
+                            <div class="controls ">
+                            <div class="django-ckeditor-widget" data-field-id="id_content_ck" style="display: inline-block;">
+                                <textarea class="ckeditoruploadingwidget form-control" cols="40" id="id_content_ck" name="content_ck" rows="10" data-processed="0" data-config="{&quot;skin&quot;: &quot;moono-lisa&quot;, &quot;toolbar_Basic&quot;: [[&quot;Source&quot;, &quot;-&quot;, &quot;Bold&quot;, &quot;Italic&quot;]], &quot;toolbar_Full&quot;: [[&quot;Styles&quot;, &quot;Format&quot;, &quot;Bold&quot;, &quot;Italic&quot;, &quot;Underline&quot;, &quot;Strike&quot;, &quot;SpellChecker&quot;, &quot;Undo&quot;, &quot;Redo&quot;], [&quot;Link&quot;, &quot;Unlink&quot;, &quot;Anchor&quot;], [&quot;Image&quot;, &quot;Flash&quot;, &quot;Table&quot;, &quot;HorizontalRule&quot;], [&quot;TextColor&quot;, &quot;BGColor&quot;], [&quot;Smiley&quot;, &quot;SpecialChar&quot;], [&quot;Source&quot;]], &quot;toolbar&quot;: &quot;full&quot;, &quot;height&quot;: 300, &quot;width&quot;: 800, &quot;filebrowserWindowWidth&quot;: 940, &quot;filebrowserWindowHeight&quot;: 725, &quot;tabSpaces&quot;: 4, &quot;extraPlugins&quot;: &quot;codesnippet&quot;, &quot;filebrowserUploadUrl&quot;: &quot;/ckeditor/upload/&quot;, &quot;filebrowserBrowseUrl&quot;: &quot;/ckeditor/browse/&quot;, &quot;language&quot;: &quot;zh-cn&quot;}" data-external-plugin-resources="[]" data-id="id_content_ck" data-type="ckeditortype"></textarea>
+                            </div>
+                    </div>
+                        </div>
+{#                    <div id="div_id_content_md" class="form-group"> <label for="id_content_md" class="control-label ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正文</label>#}
+{#                            <div class="controls ">#}
+{#                                <textarea name="content_md" cols="40" rows="10" class="textarea form-control" id="id_content_md"></textarea>#}
+{#                            </div>#}
+{#                    </div>#}
+                    <input type="hidden" name="content_html" id="id_content" />
+            </div>
+         </div>
+            </div>
+            <div class="form-actions well well-sm clearfix">
+                <div class="btn-group clearfix show-xs save-group col-xs-12">
+                    <button type="submit" class="default btn btn-primary col-xs-10" name="_save" data-loading-text="保存中.." /><i class="fa fa-save"></i> 发布</button>
+                    <button type="button" class="more btn btn-primary col-xs-2" data-toggle="collapse" data-target=".nav-collapse.more-btns"><i class="fa fa-ellipsis-vertical"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
+<script type="text/javascript" src="/static/xadmin/vendor/jquery-ui/jquery.ui.core.js"></script>
+<script type="text/javascript" src="/static/xadmin/vendor/jquery-ui/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="/static/xadmin/vendor/jquery-ui/jquery.ui.mouse.js"></script>
+<script type="text/javascript" src="/static/xadmin/vendor/jquery-ui/jquery.ui.sortable.js"></script>
+<script type="text/javascript" src="/static/xadmin/vendor/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/static/xadmin/js/xadmin.main.js"></script>
+<script type="text/javascript" src="/static/xadmin/js/xadmin.responsive.js"></script>
+<script type="text/javascript" src="/static/xadmin/js/xadmin.plugin.portal.js"></script>
+<script type="text/javascript" src="/static/autocomplete_light/jquery.init.js"></script>
+<script type="text/javascript" src="/static/autocomplete_light/autocomplete.init.js"></script>
+<script type="text/javascript" src="/static/autocomplete_light/vendor/select2/dist/js/select2.full.js"></script>
+<script type="text/javascript" src="/static/autocomplete_light/select2.js"></script>
+<script type="text/javascript" src="/static/xadmin/vendor/selectize/selectize.js"></script>
+<script type="text/javascript" src="/static/xadmin/vendor/select2/select2.js"></script>
+<script type="text/javascript" src="/static/xadmin/vendor/select2/select2_locale_zh-hans.js"></script>
+<script type="text/javascript" src="/static/xadmin/js/xadmin.widget.select.js"></script>
+<script type="text/javascript" src="/static/ckeditor/ckeditor-init.js" data-ckeditor-basepath="/static/ckeditor/ckeditor/" id="ckeditor-init-script"></script>
+<script type="text/javascript" src="/static/ckeditor/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/static/js/post_editor.js"></script>
+<script type="text/javascript" src="/static/xadmin/js/xadmin.page.form.js"></script>
+<link rel="stylesheet" href="/static/debug_toolbar/css/print.css" type="text/css" media="print" />
+<link rel="stylesheet" href="/static/debug_toolbar/css/toolbar.css" type="text/css" />
+<!-- Prevent our copy of jQuery from registering as an AMD module on sites that use RequireJS. -->
+<script src="/static/debug_toolbar/js/jquery_pre.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/static/debug_toolbar/js/jquery_post.js"></script>
+<script src="/static/debug_toolbar/js/toolbar.js"></script>
+
+{#  <span class="select2-container select2-container--default select2-container--open" style="position: absolute; top: 429px; left: 242.656px;">#}
+{#      <span class="select2-dropdown select2-dropdown--below" dir="ltr" style="width: 300px;">#}
+{#          <span class="select2-results">#}
+{#              <ul class="select2-results__options" role="tree" aria-multiselectable="true" id="select2-id_tag-results" aria-expanded="true" aria-hidden="false">#}
+{#                  <li class="select2-results__option select2-results__option--highlighted" role="treeitem" aria-selected="false">李肚</li>#}
+{#                  <li class="select2-results__option" role="treeitem" aria-selected="false">白海</li>#}
+{#                  <li class="select2-results__option" role="treeitem" aria-selected="false">短痛</li>#}
+{#                  <li class="select2-results__option" role="treeitem" aria-selected="false">达令欧尼</li>#}
+{#                  <li class="select2-results__option" role="treeitem" aria-selected="false">张瀚夫</li>#}
+{#                  <li class="select2-results__option" role="treeitem" aria-selected="false">文长长</li>#}
+{#                  <li class="select2-results__option" role="treeitem" aria-selected="false">赵耐凡</li>#}
+{#                  <li class="select2-results__option" role="treeitem" aria-selected="false">陈廿榛</li>#}
+{#                  <li class="select2-results__option" role="treeitem" aria-selected="false">春帆</li>#}
+{#                  <li class="select2-results__option" role="treeitem" aria-selected="false">春帆</li>#}
+{#                  <li class="select2-results__option select2-results__option--load-more" role="treeitem" aria-disabled="true">Loading more results…</li>#}
+{#              </ul>#}
+{#          </span>#}
+{#      </span>#}
+{#  </span>#}
+{% endblock %}
+
+
+
