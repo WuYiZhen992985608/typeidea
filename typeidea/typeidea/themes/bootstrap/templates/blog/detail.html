@@ -41,8 +41,15 @@
     </p>
         {% block collect %}
             <hr/>
-            <div><a id="collect" class="{{ post.id }}" href="{% url 'changefavorite' post.id %}"><span>喜欢否</span></a></div>
-{#            <div><a id="collect" class="{{ post.id }}" href="{% url 'changefavorite' post.id %}"><span>收藏</span></a></div>#}
+            {% if favoriter %}
+                {% if favoriter.isDelete == False %}
+                    <div><a id="collect" class="{{ post.id }}" href="{% url 'change-favorite' post.id %}"><span>取消收藏</span></a></div>
+                {% else %}
+                    <div><a id="collect" class="{{ post.id }}" href="{% url 'change-favorite' post.id %}"><span>点我收藏</span></a></div>
+                {% endif %}
+            {% else %}
+                <div><a id="collect" class="{{ post.id }}" href="{% url 'change-favorite' post.id %}"><span>点我收藏</span></a></div>
+            {% endif %}
             <div>
                 <ul>
 

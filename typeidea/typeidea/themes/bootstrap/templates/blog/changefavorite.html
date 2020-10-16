@@ -10,7 +10,6 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 {#<script type="text/javascript" charset="utf-8" src="{% static  'js/detail.js' %}"></script>#}
 <script>hljs.initHighlightingOnLoad();</script>
-{% endblock %}
 <style type="text/css">
     a:visited{
         color:#000;
@@ -22,6 +21,8 @@
         color:red;
     }
 </style>
+{% endblock %}
+
 {% block main %}
     {% if post %}
     <h1>{{ post.title }}</h1>
@@ -38,7 +39,45 @@
         {{ post.content_html }}
         {% endautoescape  %}
     </p>
-        <hr/>
+        {% block collect %}
+            <hr/>
+            {% if favoriter %}
+                {% if favoriter.isDelete == False %}
+                    <div><a id="collect" class="{{ post.id }}" href="{% url 'change-favorite' post.id %}"><span>取消收藏</span></a></div>
+                {% else %}
+                    <div><a id="collect" class="{{ post.id }}" href="{% url 'change-favorite' post.id %}"><span>点我收藏</span></a></div>
+                {% endif %}
+            {% else %}
+                <div><a id="collect" class="{{ post.id }}" href="{% url 'change-favorite' post.id %}"><span>点我收藏</span></a></div>
+            {% endif %}
+            <div>
+                <ul>
+
+                    {% if mark == 2 %}
+                        <li>
+                            <a href="{% url 'post-detail' post_list.0.1 %}" style="margin-right:10px">上一篇：{{ post_list.0.0 }}</a>
+                         </li>
+                        <li>
+                            <a href="#" style="margin-right:10px">下一篇：{{ post_list.1.0 }}</a>
+                        </li>
+                    {% elif mark == 0 %}
+                        <li>
+                            <a href="#" style="margin-right:10px">上一篇：{{ post_list.0.0 }}</a>
+                         </li>
+                        <li>
+                            <a href="{% url 'post-detail' post_list.1.1 %}" style="margin-right:10px">下一篇：{{ post_list.1.0 }}</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'post-detail' post_list.0.1 %}" style="margin-right:10px">上一篇：{{ post_list.0.0 }}</a>
+                         </li>
+                        <li>
+                            <a href="{% url 'post-detail' post_list.1.1 %}" style="margin-right:10px">下一篇：{{ post_list.1.0 }}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endblock collect %}
 
     {% endif %}
 

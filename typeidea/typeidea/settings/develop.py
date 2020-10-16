@@ -10,11 +10,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': 'typeidea_db',
         'NAME': 'typeidea_db1',
-        # 'USER':'root',
-        'USER':'debian-sys-maint',
-        'PASSWORD':'123',
-        # 'PASSWORD':'root',
-        'HOST':'127.0.0.1',
+        'USER':'root',
+        # 'USER':'debian-sys-maint',
+        # 'PASSWORD':'123',
+        'PASSWORD':'root',
+        # 'HOST':'127.0.0.1',
+        'HOST':'47.101.142.220',
         'PORT':3306,
         # 'OPTIONS':{'charset':'utf8mb4'}
     }

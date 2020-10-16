@@ -29,7 +29,7 @@ from blog.views import (
     SearchView,AuthorView,
     login,register,newblog,
     Favoritelist,quit,
-    changefavorite,addpost,
+    ChangeFavorite,addpost,
 )
 from blog.rss import LatestPostFeed
 from blog.sitemap import PostSitemap
@@ -69,7 +69,8 @@ urlpatterns = [
     url(r'^register/',register,name='register'),
     url(r'^newblog/',newblog,name='newblog'),
     url(r'^favoritelist/$',Favoritelist,name='favoritelist'),
-    url(r'^changefavorite/(\d+).html$',changefavorite,name='changefavorite'),
+    # url(r'^changefavorite/(\d+).html$',changefavorite,name='changefavorite'),
+    url(r'^changefavorite/(?P<post_id>\d+).html$',ChangeFavorite.as_view(),name='change-favorite'),
     url(r'^quit/$',quit,name='quit'),
     url(r'^addpost/$',addpost,name='addpost'),
     url(r'^media/(?P<path>.*)',serve,{'document_root':settings.MEDIA_ROOT}),

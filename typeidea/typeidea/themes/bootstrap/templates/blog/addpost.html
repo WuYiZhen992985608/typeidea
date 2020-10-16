@@ -31,6 +31,7 @@
                         </div>
                         <div class="SG_connBody">
                                 <form id="editorForm" method="post" target="fileFrame" action="http://control.blog.sina.com.cn/admin/article/article_post.php">
+                                    {%  csrf_token %}
                                     <input type="hidden" name="ptype" id="ptype" value=""/>
                                     <input type="hidden" name="teams" id="teams" value=""/>
                                     <input type="hidden" name="worldcuptags" id="worldcuptags" value=""/>
