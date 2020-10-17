@@ -335,20 +335,16 @@ def login(request):
         f = LoginForm(request.POST)
         if f.is_valid():
             username = f.cleaned_data['username']
-            # print(username)
             password = f.cleaned_data['password']
-            # print(password)
             encoded = make_password(password)
-            # print(encoded)
-            # print(check_password(password,encoded))
             if check_password(password,encoded):
                 try:
                     user = MyUser.objects.get(username=username)
                     token = random.randrange(1, 100000)
                     user.userToken = str(token)
                     user.save()
-                    request.session['username'] = user.username
-                    request.session['token'] = user.userToken
+                    request.session['username'] = username
+                    request.session['token'] = str(token)
                     return redirect('/')
                 except MyUser.DoesNotExist as e:
                     return redirect('/login/')

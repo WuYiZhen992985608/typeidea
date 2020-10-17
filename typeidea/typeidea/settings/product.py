@@ -7,7 +7,8 @@ ALLOWED_HOSTS = ['*']
 DATABASES = {
     'default':{
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'typeidea_db',
+        # 'NAME': 'typeidea_db',
+        'NAME': 'typeidea_db1',
         'USER':'root',
         'PASSWORD':'root',
         'HOST':'47.101.142.220',
