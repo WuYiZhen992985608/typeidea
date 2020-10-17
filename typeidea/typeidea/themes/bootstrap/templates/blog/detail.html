@@ -43,12 +43,15 @@
             <hr/>
             {% if favoriter %}
                 {% if favoriter.isDelete == False %}
-                    <div><a id="collect" class="{{ post.id }}" href="{% url 'change-favorite' post.id %}"><span>取消收藏</span></a></div>
+                    <div><a class="{{ post.id }}" href="{% url 'change-favorite' post.id %}"><span>取消收藏</span></a></div>
                 {% else %}
-                    <div><a id="collect" class="{{ post.id }}" href="{% url 'change-favorite' post.id %}"><span>点我收藏</span></a></div>
+                    <div><a class="{{ post.id }}" href="{% url 'change-favorite' post.id %}"><span>点我收藏</span></a></div>
                 {% endif %}
             {% else %}
-                <div><a id="collect" class="{{ post.id }}" href="{% url 'change-favorite' post.id %}"><span>点我收藏</span></a></div>
+                <div><a class="{{ post.id }}" href="{% url 'change-favorite' post.id %}"><span>点我收藏</span></a></div>
+            {% endif %}
+            {% if  delete_post == 1 %}
+                    <div><a id="delete_post" href="{% url 'deletepost' post.id %}"><span>删除文章</span></a></div>
             {% endif %}
             <div>
                 <ul>

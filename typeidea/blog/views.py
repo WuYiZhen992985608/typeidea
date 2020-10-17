@@ -83,7 +83,7 @@ class CommonViewMixin:
         # print('++++++',context)
         # for k, v in context.items:
         #     print(k,':',v)
-        # print(context)
+        # print("___+_",context)
         return context
 
     def get_sidebars(self):
@@ -249,13 +249,17 @@ class PostDetailView(CommonViewMixin, DetailView):
             # print(context)
 
         user = context['user']
+        if self.object.owner.id == user.id:
+            delete_post = 1
+        else:
+            delete_post = 0
         try:
             favoriter = Favorite.objects.filter(isDelete=False).get(noRepeat=str(user.username)+str(post_id))
             # print('=',favoriter.noRepeat)
         except:
             favoriter = None
-        context.update({'favoriter':favoriter})
-        # print(context)
+        context.update({'favoriter':favoriter,'delete_post':delete_post})
+        print(context)
         return context
 
 
@@ -363,9 +367,9 @@ def register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print(password)
+        # print(password)
         password = make_password(password)
-        print(password)
+        # print(password)
         userPhone = request.POST.get('userPhone')
         userAdderss = request.POST.get('userAddress')
         userRank = 0
@@ -567,4 +571,23 @@ def addpost(request):
         categorylist = Category.objects.filter(status=Category.STATUS_NORMAL)
         taglist = Tag.objects.filter(status=Tag.STATUS_NORMAL)
         return render(request,'blog/blogblock.html',{'post_form':PostForm,'categorylist':categorylist,'taglist':taglist})
+
+def deletepost(request,post_id):
+    token = request.session.get('token')
+    if token == None:
+        return redirect('/login/')
+    try:
+        user = MyUser.objects.get(userToken=token)
+        user_id = user.id
+        post = Post.objects.get(id=post_id)
+        if user.id == post.owner.id:
+            print(post.status)
+            post.status = Post.STATUS_DELETE
+            print(post.status)
+            post.save()
+            return redirect('/')
+        else:
+            return redirect('/login/')
+    except Post.DoesNotExist as e:
+        return HttpResponse('meiyou')
 
