@@ -198,7 +198,7 @@ class PostDetailView(CommonViewMixin, DetailView):
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
         post_id = self.object.id
-        print(post_id)
+        # print(post_id)
         post_dict = {}
         post_title_list = []
         post_id_list = []
@@ -218,7 +218,7 @@ class PostDetailView(CommonViewMixin, DetailView):
             # print(post_dict2)
             # print(type(post_dict2))
             context.update({'post_list': post_dict2, 'mark': mark})
-            print(context)
+            # print(context)
         elif post_id == 1:
             post_title_list.append('前面没有了')
             post_id_list.append(0)
@@ -232,7 +232,7 @@ class PostDetailView(CommonViewMixin, DetailView):
             # print(post_dict2)
             # print(type(post_dict2))
             context.update({'post_list': post_dict2, 'mark': mark})
-            print(context)
+            # print(context)
         else:
             post_title_list.append(self.queryset[queryset_length - post_id + 1].title)
             post_id_list.append(self.queryset[queryset_length - post_id + 1].id)
@@ -246,16 +246,16 @@ class PostDetailView(CommonViewMixin, DetailView):
             # print(post_dict2)
             # print(type(post_dict2))
             context.update({'post_list': post_dict2, 'mark': mark})
-            print(context)
+            # print(context)
 
         user = context['user']
         try:
             favoriter = Favorite.objects.filter(isDelete=False).get(noRepeat=str(user.username)+str(post_id))
-            print('=',favoriter.noRepeat)
+            # print('=',favoriter.noRepeat)
         except:
             favoriter = None
         context.update({'favoriter':favoriter})
-        print(context)
+        # print(context)
         return context
 
 
@@ -463,12 +463,12 @@ class ChangeFavorite(PostDetailView):
 
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
-        print(self.pk_url_kwarg)
+        # print(self.pk_url_kwarg)
         post_id = self.object.id
-        print('=',post_id)
+        # print('=',post_id)
         favoriter = self.change_favorite(post_id)
         context.update({'favoriter':favoriter})
-        print('context',context)
+        # print('context',context)
         return context
 
     def change_favorite(self, post_id):
@@ -482,7 +482,7 @@ class ChangeFavorite(PostDetailView):
         user = MyUser.objects.get(userToken=token)
         try:
             favoriter = Favorite.objects.get(noRepeat=str(user.username) + str(post_id))
-            print('find', favoriter.noRepeat)
+            # print('find', favoriter.noRepeat)
             if favoriter.isDelete == False:
                 # print('-', request.META['HTTP_REFERER'])
                 # print('-', request.META['PATH_INFO'])
