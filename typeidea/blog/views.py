@@ -109,7 +109,10 @@ class CommonViewMixin:
         if self.request.session.get('token'):
             token = self.request.session.get('token')
             loginstatus = '已登录'
-            user = MyUser.objects.get(userToken=token)
+            try:
+                user = MyUser.objects.get(userToken=token)
+            except:
+                user = '不存在'
         else:
             loginstatus = '未登录'
             user = '不存在'
