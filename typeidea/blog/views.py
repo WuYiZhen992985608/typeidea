@@ -252,7 +252,7 @@ class PostDetailView(CommonViewMixin, DetailView):
             # print(context)
 
         user = context['user']
-        if self.object.owner.id == user.id:
+        if type(user)!= str and self.object.owner.id == user.id:
             delete_post = 1
         else:
             delete_post = 0
