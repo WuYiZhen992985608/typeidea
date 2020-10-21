@@ -3,8 +3,8 @@ import os
 import sys
 
 if __name__ == "__main__":
-    profile = os.environ.get('TYPEIDEA_PROFILE','develop')
-    # profile = os.environ.get('TYPEIDEA_PROFILE','product')
+    # profile = os.environ.get('TYPEIDEA_PROFILE','develop')
+    profile = os.environ.get('TYPEIDEA_PROFILE','product')
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "typeidea.settings.%s" % profile)
     try:
         from django.core.management import execute_from_command_line
