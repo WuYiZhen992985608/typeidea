@@ -28,7 +28,8 @@
     <h1>{{ post.title }}</h1>
     <div>
         <span>分类:<a href="{% url 'category-list' post.category_id %}">{{ post.category.name }}</a></span>
-        <span>作者:<a href="{% url 'author' post.owner_id %}">{{ post.owner.username }}</a></span>
+        <span>作者:{{ post.writer }}</span>
+        <span>分享者:<a href="{% url 'author' post.owner_id %}">{{ post.owner.username }}</a></span>
         <span>创建时间:{{ post.created_time }}</span>
         <span>pv/uv:{{ post.pv }}/{{ post.uv }}</span>
     </div>
@@ -58,25 +59,25 @@
 
                     {% if mark == 2 %}
                         <li>
-                            <a href="{% url 'post-detail' post_list.0.1 %}" style="margin-right:10px">上一篇：{{ post_list.0.0 }}</a>
-                         </li>
-                        <li>
-                            <a href="#" style="margin-right:10px">下一篇：{{ post_list.1.0 }}</a>
+                            <a href="#" style="margin-right:10px">上一篇：{{ post_list.1.0 }}</a>
                         </li>
+                        <li>
+                            <a href="{% url 'post-detail' post_list.0.1 %}" style="margin-right:10px">下一篇：{{ post_list.0.0 }}</a>
+                         </li>
                     {% elif mark == 0 %}
                         <li>
-                            <a href="#" style="margin-right:10px">上一篇：{{ post_list.0.0 }}</a>
-                         </li>
-                        <li>
-                            <a href="{% url 'post-detail' post_list.1.1 %}" style="margin-right:10px">下一篇：{{ post_list.1.0 }}</a>
+                            <a href="{% url 'post-detail' post_list.1.1 %}" style="margin-right:10px">上一篇：{{ post_list.1.0 }}</a>
                         </li>
+                        <li>
+                            <a href="#" style="margin-right:10px">下一篇：{{ post_list.0.0 }}</a>
+                         </li>
                     {% else %}
                         <li>
                             <a href="{% url 'post-detail' post_list.0.1 %}" style="margin-right:10px">上一篇：{{ post_list.0.0 }}</a>
-                         </li>
+                        </li>
                         <li>
                             <a href="{% url 'post-detail' post_list.1.1 %}" style="margin-right:10px">下一篇：{{ post_list.1.0 }}</a>
-                        </li>
+                         </li>
                     {% endif %}
                 </ul>
             </div>

@@ -83,7 +83,7 @@ class CommonViewMixin:
         # print('++++++',context)
         # for k, v in context.items:
         #     print(k,':',v)
-        # print("___+_",context)
+        print("___+_",context)
         return context
 
     def get_sidebars(self):
@@ -191,6 +191,7 @@ class PostDetailView(CommonViewMixin, DetailView):
     context_object_name = 'post'
     pk_url_kwarg = 'post_id'
 
+
     # 在get请求中添加处理pv,uv的函数
     def get(self, request, *args, **kwargs):
         response = super().get(request, *args, **kwargs)
@@ -201,55 +202,59 @@ class PostDetailView(CommonViewMixin, DetailView):
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
         post_id = self.object.id
-        # print(post_id)
+        print(post_id)
         post_dict = {}
         post_title_list = []
-        post_id_list = []
-        # print('len',len(self.queryset))
+        post_index_list = []
+        print('len',len(self.queryset))
         queryset_length = len(self.queryset)
+        queryset_list = list(self.queryset)
+        print(queryset_list)
+        post_index = queryset_list.index(self.object)
+        print('index',post_index)
         # if语句添加上下篇链接
-        if post_id == len(self.queryset):
-            post_title_list.append(self.queryset[queryset_length-post_id+1].title)
-            post_id_list.append(self.queryset[queryset_length-post_id+1].id)
-            post_title_list.append('后面没有了')
-            post_id_list.append(post_id+1)
-            mark = 2
-            # print(post_id_list)
-            # print(post_title_list)
-            post_dict.update(zip(post_title_list, post_id_list))
-            post_dict2 = sorted(post_dict.items(), key=operator.itemgetter(1), reverse=False)
-            # print(post_dict2)
-            # print(type(post_dict2))
-            context.update({'post_list': post_dict2, 'mark': mark})
-            # print(context)
-        elif post_id == 1:
+        if post_index == queryset_length-1:
+            post_title_list.append(self.queryset[post_index-1].title)
+            post_index_list.append(self.queryset[post_index-1].id)
             post_title_list.append('前面没有了')
-            post_id_list.append(0)
-            post_title_list.append(self.queryset[queryset_length - post_id-1].title)
-            post_id_list.append(self.queryset[queryset_length - post_id-1].id)
+            post_index_list.append(post_index+1)
+            mark = 2
+            print(post_index_list)
+            print(post_title_list)
+            post_dict.update(zip(post_title_list, post_index_list))
+            post_dict2 = sorted(post_dict.items(), key=operator.itemgetter(1), reverse=False)
+            print(post_dict2)
+            print(type(post_dict2))
+            context.update({'post_list': post_dict2, 'mark': mark})
+            print(context)
+        elif post_index == 0:
+            post_title_list.append('后面没有了')
+            post_index_list.append(-1)
+            post_title_list.append(self.queryset[post_index+1].title)
+            post_index_list.append(self.queryset[post_index+1].id)
             mark = 0
-            # print(post_id_list)
-            # print(post_title_list)
-            post_dict.update(zip(post_title_list, post_id_list))
+            print(post_index_list)
+            print(post_title_list)
+            post_dict.update(zip(post_title_list, post_index_list))
             post_dict2 = sorted(post_dict.items(), key=operator.itemgetter(1), reverse=False)
-            # print(post_dict2)
-            # print(type(post_dict2))
+            print(post_dict2)
+            print(type(post_dict2))
             context.update({'post_list': post_dict2, 'mark': mark})
-            # print(context)
+            print(context)
         else:
-            post_title_list.append(self.queryset[queryset_length - post_id + 1].title)
-            post_id_list.append(self.queryset[queryset_length - post_id + 1].id)
-            post_title_list.append(self.queryset[queryset_length - post_id - 1].title)
-            post_id_list.append(self.queryset[queryset_length - post_id - 1].id)
+            post_title_list.append(self.queryset[post_index-1].title)
+            post_index_list.append(self.queryset[post_index-1].id)
+            post_title_list.append(self.queryset[post_index+1].title)
+            post_index_list.append(self.queryset[post_index+1].id)
             mark = 1
-            # print(post_id_list)
-            # print(post_title_list)
-            post_dict.update(zip(post_title_list, post_id_list))
+            print(post_index_list)
+            print(post_title_list)
+            post_dict.update(zip(post_title_list, post_index_list))
             post_dict2 = sorted(post_dict.items(), key=operator.itemgetter(1), reverse=False)
-            # print(post_dict2)
-            # print(type(post_dict2))
+            print(post_dict2)
+            print(type(post_dict2))
             context.update({'post_list': post_dict2, 'mark': mark})
-            # print(context)
+            print(context)
 
         user = context['user']
         if type(user)!= str and self.object.owner.id == user.id:
@@ -510,15 +515,15 @@ class ChangeFavorite(PostDetailView):
 
 @csrf_exempt
 def addpost(request):
+    token = request.session.get('token')
+    if token == None:
+        return redirect('/login/')
     # print("+++")
     # print(request.method)
     # print('meta', request.META)
-    if request.method == 'POST':
-        token = request.session.get('token')
-        if token == None:
-            return redirect('/login/')
-        try:
-            user = MyUser.objects.get(userToken=token)
+    try:
+        user = MyUser.objects.get(userToken=token)
+        if request.method == 'POST':
             # print('username',user.username)
             title = request.POST.get('title')
             # print('title', title)
@@ -533,10 +538,13 @@ def addpost(request):
             # print(status)
             tag = request.POST.get('tag')
             # print(tag)
+            writer = request.POST.get('writer')
             try:
                 tag_instance = Tag.objects.get(name=tag)
             except:
                 tag_instance = Tag.createtag(tag, user)
+                # print("create tag")
+                tag_instance.save()
             # print(type(tag_instance))
             is_md = request.POST.get('is_md')
             if is_md:
@@ -561,19 +569,23 @@ def addpost(request):
             # print("+——")
             p.category_id = category_instance.id
             # print("_____+")
-            # p.tag = tag_instance.id
             p.owner_id = user.id
+            p.writer = writer
             p.save()
+            tag_instance_queryset = Tag.objects.filter(id=tag_instance.id)
+            p.tag.add(*tag_instance_queryset)
             return redirect('/')
-        except MyUser.DoesNotExist as e:
-            return redirect('/login/')
-            # return HttpResponse('提交文章')
-    else:
-        # print('_+_+')
-        # return render(request,'blog/addpost.html')
-        categorylist = Category.objects.filter(status=Category.STATUS_NORMAL)
-        taglist = Tag.objects.filter(status=Tag.STATUS_NORMAL)
-        return render(request,'blog/blogblock.html',{'post_form':PostForm,'categorylist':categorylist,'taglist':taglist})
+        else:
+            # print('_+_+')
+            # return render(request,'blog/addpost.html')
+            categorylist = Category.objects.filter(status=Category.STATUS_NORMAL)
+            taglist = Tag.objects.filter(status=Tag.STATUS_NORMAL)
+            return render(request, 'blog/blogblock.html',
+                          {'post_form': PostForm, 'categorylist': categorylist, 'taglist': taglist,'user':user})
+    except MyUser.DoesNotExist as e:
+        return redirect('/login/')
+        # return HttpResponse('提交文章')
+
 
 def deletepost(request,post_id):
     token = request.session.get('token')

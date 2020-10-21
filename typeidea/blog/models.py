@@ -128,6 +128,7 @@ class Post(models.Model):
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
     pv = models.PositiveIntegerField(default=1)
     uv = models.PositiveIntegerField(default=1)
+    writer = models.CharField(max_length=128,blank=True,verbose_name='作者')
 
     class Meta:
         verbose_name = verbose_name_plural = '文章'

@@ -54,8 +54,16 @@
                                 <div id="div_id_title" class="form-group col-sm-6">
                                     <label for="id_title" class="control-label  requiredField" >标题<span class="asteriskField">*</span> </label>
                                     <div class="controls ">
-                                        <input type="text" name="title" class="text-field admintextinputwidget form-control" maxlength="255" required id="id_title" /> </div>
+                                        <input type="text" name="title" class="text-field admintextinputwidget form-control" maxlength="255" required id="id_title" />
                                     </div>
+                                </div>
+                                <div id="div_id_writer" class="form-group col-sm-6">
+                                    <label for="id_writer" class="control-label  requiredField" >作者<span class="asteriskField">*</span> </label>
+                                    <div class="controls ">
+                                        <input type="text" name="writer" class="text-field admintextinputwidget form-control" maxlength="128" value={{ user.username }} />
+                                    </div>
+                                </div>
+                                <br/><br/><br/>
                                 <div id="div_id_category" class="form-group col-sm-6">
                                     <label for="id_category" class="control-label  requiredField">分类<span class="asteriskField">*</span> </label>
                                     <div class="controls ">
@@ -78,16 +86,16 @@
                                     </div>
                             </div>
                             <div id="div_id_tag" class="form-group">
-                                    <label for="id_tag" class="control-label  requiredField">&nbsp;&nbsp;&nbsp;标签<span class="asteriskField">*</span> </label>
-                                    <div class="controls ">
-                                        <select name="tag" class="modelselect2multiple form-control" required id="id_tag" data-autocomplete-light-url="/tag-autocomplete/" data-autocomplete-light-function="select2" multiple="multiple">
-                                            {% for tag in taglist %}
-                                                <option value={{ tag }} selected>{{ tag }}</option>
-                                            {% endfor %}
-                                        </select>
-                                        <input type="text" name="tag" class="text-field admintextinputwidget form-control" maxlength="32" required id="id_tag" /> </div>
-                                    </div>
+                                <label for="id_tag" class="control-label  requiredField">&nbsp;&nbsp;&nbsp;标签<span class="asteriskField">*</span> </label>
+                                <div class="controls ">
+                                    <select name="tag" class="modelselect2multiple form-control" required id="id_tag" data-autocomplete-light-url="/tag-autocomplete/" data-autocomplete-light-function="select2" multiple="multiple">
+                                        {% for tag in taglist %}
+                                            <option value={{ tag }} selected>{{ tag }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <input type="text" name="tag" class="text-field admintextinputwidget form-control" maxlength="32" required id="id_tag" /> </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 <div class="panel panel-default fieldset" id="box-1" >
