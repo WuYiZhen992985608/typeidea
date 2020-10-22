@@ -5,7 +5,7 @@ from blog.views import CommonViewMixin
 # from django.http import HttpResponse
 # from django.shortcuts import render
 
-from .models import Link
+from .models import Link,SideBar
 
 # 获取友链数据
 class LinkListView(CommonViewMixin,ListView):
