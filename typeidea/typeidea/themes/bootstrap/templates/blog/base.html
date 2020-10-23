@@ -76,7 +76,7 @@
                                     <p>
                                         {{ s.content }}
                                     </p>
-                                    <ul style="list-style: none;">
+                                    <ul style="list-style: none;text-align:left;margin:0;padding:0;">
                                         {% for p in hot_posts %}
                                         <li><a href="{% url 'post-detail' p.id %}" style="color: #5d5db1">{{ p.title }}</a></li>
                                         <hr/>
