@@ -115,12 +115,15 @@ class CommonViewMixin:
             loginstatus = '已登录'
             try:
                 user = MyUser.objects.get(userToken=token)
+                userimg = user.userImg
+                userimg = userimg[75:]
             except:
                 user = '不存在'
         else:
             loginstatus = '未登录'
             user = '不存在'
-        return {'loginstatus':loginstatus,'user':user}
+            userimg = '不存在'
+        return {'loginstatus':loginstatus,'user':user,'userimg':userimg}
 
     # def get_post_dict(self):
     #     postlist = Post.objects.filter(status=Post.STATUS_NORMAL)
@@ -541,16 +544,7 @@ def addpost(request):
             # print(category_instance.id)
             status = request.POST.get('status')
             # print(status)
-            tag = request.POST.get('tag')
-            # print(tag)
             writer = request.POST.get('writer')
-            try:
-                tag_instance = Tag.objects.get(name=tag)
-            except:
-                tag_instance = Tag.createtag(tag, user)
-                # print("create tag")
-                tag_instance.save()
-            # print(type(tag_instance))
             is_md = request.POST.get('is_md')
             if is_md:
                 is_md = True
@@ -577,9 +571,21 @@ def addpost(request):
             p.owner_id = user.id
             p.writer = writer
             p.save()
-            tag_instance_queryset = Tag.objects.filter(id=tag_instance.id)
-            p.tag.add(*tag_instance_queryset)
-            return redirect('/')
+            tag = request.POST.get('tag')
+            # print(tag)
+            if tag == "不添加标签":
+                return redirect('/')
+            else:
+                try:
+                    tag_instance = Tag.objects.get(name=tag)
+                except:
+                    tag_instance = Tag.createtag(tag, user)
+                    # print("create tag")
+                    tag_instance.save()
+                # print(type(tag_instance))
+                tag_instance_queryset = Tag.objects.filter(id=tag_instance.id)
+                p.tag.add(*tag_instance_queryset)
+                return redirect('/')
         else:
             # print('_+_+')
             # return render(request,'blog/addpost.html')

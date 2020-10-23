@@ -13,7 +13,7 @@ DATABASES = {
         'PASSWORD':'root',
         'HOST':'47.101.142.220',
         'PORT':3306,
-        'CONN_MAX_AGE': 5 * 60,
+        # 'CONN_MAX_AGE': 5 * 60,
         'OPTIONS':{'charset':'utf8mb4'}
     },
 }

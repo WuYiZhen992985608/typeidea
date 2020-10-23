@@ -89,11 +89,12 @@
                                 <label for="id_tag" class="control-label  requiredField">&nbsp;&nbsp;&nbsp;标签<span class="asteriskField">*</span> </label>
                                 <div class="controls ">
                                     <select name="tag" class="modelselect2multiple form-control" required id="id_tag" data-autocomplete-light-url="/tag-autocomplete/" data-autocomplete-light-function="select2" multiple="multiple">
+                                        <option selected="selected" disabled="disabled"  style="display: none" value=""></option>
                                         {% for tag in taglist %}
                                             <option value={{ tag }} selected>{{ tag }}</option>
                                         {% endfor %}
                                     </select>
-                                    <input type="text" name="tag" class="text-field admintextinputwidget form-control" maxlength="32" required id="id_tag" /> </div>
+                                    <input type="text" name="tag" class="text-field admintextinputwidget form-control" maxlength="32" required id="id_tag" value="不添加标签"/> </div>
                                 </div>
                             </div>
                         </div>

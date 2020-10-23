@@ -42,13 +42,12 @@
                     <div><a id="register" href="/register/" style="margin-right:10px">注册</a></div>
                     <div><a id="login" href="/login/" style="margin-right:10px">登录</a></div>
                 {% else  %}
-                    <div><span style="margin-right:10px">{{ user.username }}{{ loginstatus }}</span></div>
+{#                    <div><span style="margin-right:10px">{{ user.username }}{{ loginstatus }}</span></div>#}
+                    <div><span style="background-image: url('{{ userimg }}');background-repeat:no-repeat;background-size:contain;margin-right:10px;width:40px;height:40px;display: block;border-radius: 100px;">&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
                     <div><a id="quit" href="/quit/" style="margin-right:10px">注销</a></div>
                     <div><a id="addpost" href="/addpost/" style="margin-right:10px">写文章</a></div>
                     <div><a id="favoritelist" href="/favoritelist/" style="margin-right:10px">收藏</a></div>
-
                 {% endif %}
-
                 <form class="form-inline" action="/search/" method="GET">
                     <input class="form-control" type="search" name="keyword" placeholder="Search" aria-label="Search" value="{{ keyword }}">
                     <button class="btn btn-outline-success" type="submit">搜索</button>
