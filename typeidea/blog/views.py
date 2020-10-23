@@ -76,6 +76,7 @@ class CommonViewMixin:
         context = super().get_context_data(**kwargs)
         context.update({
             'sidebars': self.get_sidebars(),
+            'hot_posts':self.get_hot_posts(),
         })
         # pprint.pprint(context)
         context.update(self.get_navs())
@@ -87,12 +88,16 @@ class CommonViewMixin:
         # print('++++++',context)
         # for k, v in context.items:
         #     print(k,':',v)
-        # print("___+_",context)
+        # pprint.pprint(context)
         return context
 
     def get_sidebars(self):
         return SideBar.objects.filter(status=SideBar.STATUS_SHOW)
 
+    def get_hot_posts(self):
+        hot_posts = Post.hot_posts()
+        hot_posts = hot_posts[:10]
+        return hot_posts
     # 分别列出导航及非导航category集合
     def get_navs(cls):
         categories = Category.objects.filter(status=Category.STATUS_NORMAL)
@@ -124,6 +129,7 @@ class CommonViewMixin:
             user = '不存在'
             userimg = '不存在'
         return {'loginstatus':loginstatus,'user':user,'userimg':userimg}
+
 
     # def get_post_dict(self):
     #     postlist = Post.objects.filter(status=Post.STATUS_NORMAL)
