@@ -9,6 +9,7 @@ from django.views.generic import ListView, DetailView
 from django.shortcuts import get_object_or_404,render, redirect
 # from django.http import HttpResponse
 from config.models import SideBar
+from comment.models import Comment
 from django.http import HttpResponse, JsonResponse
 from django.conf import settings
 from .models import Post, Tag, Category,MyUser,Favorite
@@ -82,13 +83,14 @@ class CommonViewMixin:
         context.update(self.get_navs())
         # pprint.pprint(context)
         context.update(self.get_loginstatus())
+        context.update(self.get_latest_comments())
         # pprint.pprint(context)
         # context.update(self.get_post_dict())
         # context.update(self.get_favorites())
         # print('++++++',context)
         # for k, v in context.items:
         #     print(k,':',v)
-        # pprint.pprint(context)
+        pprint.pprint(context)
         return context
 
     def get_sidebars(self):
@@ -98,6 +100,19 @@ class CommonViewMixin:
         hot_posts = Post.hot_posts()
         hot_posts = hot_posts[:10]
         return hot_posts
+
+    def get_latest_comments(self):
+        latest_comments = Comment.latest_comments()
+        latest_comments = latest_comments[0]
+        comment_dict = {}
+        # for c in latest_comments:
+        #     comment_post_id = c.target[6:8]
+        #     # print(comment_post_id)
+        #     comment_dict[c] = int(comment_post_id)
+        comment_post_id = latest_comments.target[6:8]
+        comment_dict[latest_comments] = int(comment_post_id)
+        return {'latest_comments':latest_comments,'comment_dict':comment_dict}
+
     # 分别列出导航及非导航category集合
     def get_navs(cls):
         categories = Category.objects.filter(status=Category.STATUS_NORMAL)

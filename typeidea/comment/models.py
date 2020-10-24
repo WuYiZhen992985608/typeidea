@@ -21,9 +21,15 @@ class Comment(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '评论'
+        ordering = ['-id']
 
 
     # 根据目标获取评论
     @classmethod
     def get_by_target(cls,target):
         return cls.objects.filter(target=target,status=cls.STATUS_NORMAL)
+
+    @classmethod
+    def latest_comments(cls):
+        latest_comments = cls.objects.filter(status=cls.STATUS_NORMAL)
+        return latest_comments
