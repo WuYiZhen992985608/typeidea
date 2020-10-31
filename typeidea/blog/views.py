@@ -90,7 +90,7 @@ class CommonViewMixin:
         # print('++++++',context)
         # for k, v in context.items:
         #     print(k,':',v)
-        pprint.pprint(context)
+        # pprint.pprint(context)
         return context
 
     def get_sidebars(self):
@@ -168,8 +168,7 @@ class CommonViewMixin:
 # 对应post_list函数，作为主页模板基类，
 # category,tag都从这里继承来处理多个URL的逻辑
 class IndexView(CommonViewMixin, ListView):
-    # queryset = Post.latest_posts()
-    queryset = Post.objects.filter(status=Post.STATUS_NORMAL).select_related('owner').select_related('category')
+    queryset = Post.objects.filter(status=Post.STATUS_NORMAL).select_related('owner').select_related('category').values('id','title','desc','category_id','owner_id','writer')
     paginate_by = 5
     context_object_name = 'post_list'
     template_name = 'blog/list.html'
@@ -189,6 +188,7 @@ class CategoryView(IndexView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        print('categoryview',queryset)
         category_id = self.kwargs.get('category_id')
         return queryset.filter(category_id=category_id)
 
@@ -208,13 +208,14 @@ class TagView(IndexView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        print('tagview', queryset)
         tag_id = self.kwargs.get('tag_id')
         return queryset.filter(tag__id=tag_id)
 
 # 处理文章详情页URL
 class PostDetailView(CommonViewMixin, DetailView):
     # queryset = Post.latest_posts()
-    queryset = Post.objects.filter(status=Post.STATUS_NORMAL)
+    queryset = Post.objects.filter(status=Post.STATUS_NORMAL).select_related('owner').select_related('category')
     template_name = 'blog/detail.html'
     context_object_name = 'post'
     pk_url_kwarg = 'post_id'
