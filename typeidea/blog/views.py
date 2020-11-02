@@ -90,7 +90,8 @@ class CommonViewMixin:
         # print('++++++',context)
         # for k, v in context.items:
         #     print(k,':',v)
-        # pprint.pprint(context)
+        print('CommonViewMixin')
+        pprint.pprint(context)
         return context
 
     def get_sidebars(self):
@@ -173,6 +174,12 @@ class IndexView(CommonViewMixin, ListView):
     context_object_name = 'post_list'
     template_name = 'blog/list.html'
 
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        print('indexview')
+        pprint.pprint(self.queryset)
+        return context
+
 
 # 主页带category_id的URL处理
 class CategoryView(IndexView):
@@ -214,12 +221,23 @@ class TagView(IndexView):
 
 # 处理文章详情页URL
 class PostDetailView(CommonViewMixin, DetailView):
+
     # queryset = Post.latest_posts()
-    queryset = Post.objects.filter(status=Post.STATUS_NORMAL).select_related('owner').select_related('category')
+    # queryset = Post.objects.filter(status=Post.STATUS_NORMAL).select_related('owner').select_related('category').values('id','title','desc','category_id','owner_id','writer','content_html')
     template_name = 'blog/detail.html'
     context_object_name = 'post'
     pk_url_kwarg = 'post_id'
 
+
+
+    def get_queryset(self):
+        queryset = Post.objects.filter(status=Post.STATUS_NORMAL,id=self.kwargs.get('post_id')).select_related('owner').select_related('category')
+        return queryset
+
+    def get_querysets(self):
+        querysets = Post.objects.filter(status=Post.STATUS_NORMAL).select_related('owner').select_related('category').values('id','title','desc','category_id','owner_id','writer')
+        print('objectids',querysets)
+        return querysets
 
     # 在get请求中添加处理pv,uv的函数
     def get(self, request, *args, **kwargs):
@@ -230,75 +248,83 @@ class PostDetailView(CommonViewMixin, DetailView):
 
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
+        querysets = self.get_querysets()
+        queryset = self.get_queryset()
+        print(queryset)
+        print('detail')
+        pprint.pprint(context)
+        # post_id = self.object['id']
         post_id = self.object.id
         # print(post_id)
         post_dict = {}
         post_title_list = []
         post_index_list = []
         # print('len',len(self.queryset))
-        queryset_length = len(self.queryset)
-        queryset_list = list(self.queryset)
-        # print(queryset_list)
-        post_index = queryset_list.index(self.object)
-        # print('index',post_index)
-        # if语句添加上下篇链接
-        if post_index == queryset_length-1:
-            post_title_list.append(self.queryset[post_index-1].title)
-            post_index_list.append(self.queryset[post_index-1].id)
-            post_title_list.append('前面没有了')
-            post_index_list.append(post_index+1)
-            mark = 2
-            # print(post_index_list)
-            # print(post_title_list)
-            post_dict.update(zip(post_title_list, post_index_list))
-            post_dict2 = sorted(post_dict.items(), key=operator.itemgetter(1), reverse=False)
-            # print(post_dict2)
-            # print(type(post_dict2))
-            context.update({'post_list': post_dict2, 'mark': mark})
-            # pprint.pprint(context)
-        elif post_index == 0:
-            post_title_list.append('后面没有了')
-            post_index_list.append(-1)
-            post_title_list.append(self.queryset[post_index+1].title)
-            post_index_list.append(self.queryset[post_index+1].id)
-            mark = 0
-            # print(post_index_list)
-            # print(post_title_list)
-            post_dict.update(zip(post_title_list, post_index_list))
-            post_dict2 = sorted(post_dict.items(), key=operator.itemgetter(1), reverse=False)
-            # print(post_dict2)
-            # print(type(post_dict2))
-            context.update({'post_list': post_dict2, 'mark': mark})
-            # pprint.pprint(context)
-        else:
-            post_title_list.append(self.queryset[post_index-1].title)
-            post_index_list.append(self.queryset[post_index-1].id)
-            post_title_list.append(self.queryset[post_index+1].title)
-            post_index_list.append(self.queryset[post_index+1].id)
-            mark = 1
-            # print(post_index_list)
-            # print(post_title_list)
-            post_dict.update(zip(post_title_list, post_index_list))
-            post_dict2 = sorted(post_dict.items(), key=operator.itemgetter(1), reverse=False)
-            # print(post_dict2)
-            # print(type(post_dict2))
-            context.update({'post_list': post_dict2, 'mark': mark})
-            # pprint.pprint(context)
+        queryset_length = len(querysets)
+        queryset_list = list(querysets)
+        for q in queryset_list:
+            if q['id'] == post_id:
+                post_index = queryset_list.index(q)
+                # print('index',post_index)
+                # if语句添加上下篇链接
+                if post_index == queryset_length-1:
+                    post_title_list.append(queryset_list[post_index-1]['title'])
+                    post_index_list.append(queryset_list[post_index-1]['id'])
+                    post_title_list.append('前面没有了')
+                    post_index_list.append(post_index+1)
+                    mark = 2
+                    # print(post_index_list)
+                    # print(post_title_list)
+                    post_dict.update(zip(post_title_list, post_index_list))
+                    post_dict2 = sorted(post_dict.items(), key=operator.itemgetter(1), reverse=False)
+                    # print(post_dict2)
+                    # print(type(post_dict2))
+                    context.update({'post_list': post_dict2, 'mark': mark})
+                    # pprint.pprint(context)
+                elif post_index == 0:
+                    post_title_list.append('后面没有了')
+                    post_index_list.append(-1)
+                    post_title_list.append(queryset_list[post_index+1]['title'])
+                    post_index_list.append(queryset_list[post_index+1]['id'])
+                    mark = 0
+                    # print(post_index_list)
+                    # print(post_title_list)
+                    post_dict.update(zip(post_title_list, post_index_list))
+                    post_dict2 = sorted(post_dict.items(), key=operator.itemgetter(1), reverse=False)
+                    # print(post_dict2)
+                    # print(type(post_dict2))
+                    context.update({'post_list': post_dict2, 'mark': mark})
+                    # pprint.pprint(context)
+                else:
+                    post_title_list.append(queryset_list[post_index-1]['title'])
+                    post_index_list.append(queryset_list[post_index-1]['id'])
+                    post_title_list.append(queryset_list[post_index+1]['title'])
+                    post_index_list.append(queryset_list[post_index+1]['id'])
+                    mark = 1
+                    # print(post_index_list)
+                    # print(post_title_list)
+                    post_dict.update(zip(post_title_list, post_index_list))
+                    post_dict2 = sorted(post_dict.items(), key=operator.itemgetter(1), reverse=False)
+                    # print(post_dict2)
+                    # print(type(post_dict2))
+                    context.update({'post_list': post_dict2, 'mark': mark})
+                    # pprint.pprint(context)
 
-        user = context['user']
-        if type(user)!= str and self.object.owner.id == user.id:
-            delete_post = 1
-        else:
-            delete_post = 0
-        try:
-            favoriter = Favorite.objects.filter(isDelete=False).get(noRepeat=str(user.username)+str(post_id))
-            # print('=',favoriter.noRepeat)
-        except:
-            favoriter = None
-        # print("self.get_sidebars",self.get_sidebars())
-        context.update({'favoriter':favoriter,'delete_post':delete_post})
-        # pprint.pprint(context)
-        return context
+                user = context['user']
+                if type(user)!= str and self.object.owner.id == user.id:
+                    delete_post = 1
+                else:
+                    delete_post = 0
+                try:
+                    favoriter = Favorite.objects.filter(isDelete=False).get(noRepeat=str(user.username)+str(post_id))
+                    # print('=',favoriter.noRepeat)
+                except:
+                    favoriter = None
+                # print("self.get_sidebars",self.get_sidebars())
+                context.update({'favoriter':favoriter,'delete_post':delete_post})
+                print('PostDetailView')
+                pprint.pprint(context)
+                return context
 
 
 
@@ -320,12 +346,15 @@ class PostDetailView(CommonViewMixin, DetailView):
             cache.set(uv_key,1,24*60*60)
 
         if increase_pv and increase_uv:
+            # Post.objects.filter(pk=self.object['id']).update(pv=F('pv')+1,uv=F('uv')+1)
             Post.objects.filter(pk=self.object.id).update(pv=F('pv')+1,uv=F('uv')+1)
 
         elif increase_pv:
+            # Post.objects.filter(pk=self.object['id']).update(pv=F('pv')+1)
             Post.objects.filter(pk=self.object.id).update(pv=F('pv')+1)
 
         elif increase_uv:
+            # Post.objects.filter(pk=self.object['id']).update(uv=F('uv')+1)
             Post.objects.filter(pk=self.object.id).update(uv=F('uv')+1)
 
         # from django.db import connection
