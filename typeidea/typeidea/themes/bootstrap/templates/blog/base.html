@@ -62,6 +62,26 @@
     <div class="container main">
 				<div class="row">
 					<div class="col-9 post-list">
+                        {% for post in top_posts %}
+                            <div class="card post" style="border: 2px dotted #5d5db1">
+                                <div class="card-body">
+                                    <div style="text-align: center;display:inline;float:right;width:60px;height:35px;background-color: indianred;border-radius: 10px"><h4>置顶</h4></div>
+                                    <h5 class="card-title"><a href="{% url 'post-detail' post.id %}">
+                                    {{ post.title }}</a></h5>
+                                    <span class="card-link">作者:{{ post.writer }}</span>
+                                    <span class="card-link">分享者:<a href="{% url 'author' post.owner_id %}">{{ post.owner.username }}</a></span>
+                                    <span class="card-link">分类:<a href="{% url 'category-list' post.category_id %}">
+                                        {{ post.category.name }}</a></span>
+                                    <span class="card-link">标签:
+                                        {% for tag in post.tag.all %}
+                                        <a href="{% url 'tag-list' tag.id %}">{{ tag.name }}</a>
+                                        {% endfor %}
+                                    </span>
+                                    <hr/>
+                                    <p class="card-text">{{ post.desc }}<a href="{% url 'post-detail' post.id %}">完整内容</a></p>
+                               </div>
+                            </div>
+                        {% endfor %}
                         {% block main %}
                             {% block linkscript2 %}
                             {% endblock linkscript2 %}
@@ -122,7 +142,8 @@
                     </nav>
                 </div>
                 <div class="container power">
-                    <span class="text-muted">Power by 992985608@qq.com</span>
+                    <p class="text-muted">Power by 992985608@qq.com</p>
+                    <p class="text-muted">(部分功能仅支持PC端访问)</p>
                 </div>
                 {% endblock %}
             </footer>

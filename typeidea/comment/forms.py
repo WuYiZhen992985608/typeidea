@@ -37,7 +37,7 @@ class CommentForm(forms.ModelForm):
     # 控制评论长度
     def clean_content(self):
         content = self.cleaned_data.get('content')
-        if len(content) < 10:
+        if len(content) < 1:
             raise forms.ValidationError('内容长度怎么能这么短呢!')
         content = mistune.markdown(content)
         return content

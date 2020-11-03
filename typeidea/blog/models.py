@@ -129,6 +129,7 @@ class Post(models.Model):
     pv = models.PositiveIntegerField(default=1)
     uv = models.PositiveIntegerField(default=1)
     writer = models.CharField(max_length=128,blank=True,verbose_name='作者')
+    is_top = models.BooleanField(default=False,verbose_name="置顶")
 
     class Meta:
         verbose_name = verbose_name_plural = '文章'
@@ -203,7 +204,6 @@ class Post(models.Model):
     # 在模型中增加属性来输出配置好的tags
     def tags(self):
         tgs = ','.join(self.tag.values_list('name',flat=True))
-        print('tgstgstgs',tgs)
         return tgs
 
     # @classmethod

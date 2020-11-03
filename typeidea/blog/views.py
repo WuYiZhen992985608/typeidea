@@ -90,8 +90,8 @@ class CommonViewMixin:
         # print('++++++',context)
         # for k, v in context.items:
         #     print(k,':',v)
-        print('CommonViewMixin')
-        pprint.pprint(context)
+        # print('CommonViewMixin')
+        # pprint.pprint(context)
         return context
 
     def get_sidebars(self):
@@ -169,17 +169,20 @@ class CommonViewMixin:
 # 对应post_list函数，作为主页模板基类，
 # category,tag都从这里继承来处理多个URL的逻辑
 class IndexView(CommonViewMixin, ListView):
-    queryset = Post.objects.filter(status=Post.STATUS_NORMAL).select_related('owner').select_related('category').values('id','title','desc','category_id','owner_id','writer')
+    queryset = Post.objects.filter(status=Post.STATUS_NORMAL).select_related('owner').select_related('category').values('id','title','desc','category_id','owner_id','writer','is_top')
     paginate_by = 5
     context_object_name = 'post_list'
     template_name = 'blog/list.html'
 
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
-        print('indexview')
-        pprint.pprint(self.queryset)
+        top_posts = self.get_top_posts()
+        context.update({'top_posts':top_posts})
         return context
 
+    def get_top_posts(self):
+        top_posts = Post.objects.filter(status=Post.STATUS_NORMAL,is_top=True).select_related('owner').select_related('category')
+        return top_posts
 
 # 主页带category_id的URL处理
 class CategoryView(IndexView):
@@ -195,7 +198,7 @@ class CategoryView(IndexView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        print('categoryview',queryset)
+        # print('categoryview',queryset)
         category_id = self.kwargs.get('category_id')
         return queryset.filter(category_id=category_id)
 
@@ -215,7 +218,7 @@ class TagView(IndexView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        print('tagview', queryset)
+        # print('tagview', queryset)
         tag_id = self.kwargs.get('tag_id')
         return queryset.filter(tag__id=tag_id)
 
@@ -236,7 +239,7 @@ class PostDetailView(CommonViewMixin, DetailView):
 
     def get_querysets(self):
         querysets = Post.objects.filter(status=Post.STATUS_NORMAL).select_related('owner').select_related('category').values('id','title','desc','category_id','owner_id','writer')
-        print('objectids',querysets)
+        # print('objectids',querysets)
         return querysets
 
     # 在get请求中添加处理pv,uv的函数
@@ -250,9 +253,9 @@ class PostDetailView(CommonViewMixin, DetailView):
         context = super().get_context_data(**kwargs)
         querysets = self.get_querysets()
         queryset = self.get_queryset()
-        print(queryset)
-        print('detail')
-        pprint.pprint(context)
+        # print(queryset)
+        # print('detail')
+        # pprint.pprint(context)
         # post_id = self.object['id']
         post_id = self.object.id
         # print(post_id)
@@ -322,8 +325,8 @@ class PostDetailView(CommonViewMixin, DetailView):
                     favoriter = None
                 # print("self.get_sidebars",self.get_sidebars())
                 context.update({'favoriter':favoriter,'delete_post':delete_post})
-                print('PostDetailView')
-                pprint.pprint(context)
+                # print('PostDetailView')
+                # pprint.pprint(context)
                 return context
 
 
