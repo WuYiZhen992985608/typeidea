@@ -170,7 +170,7 @@ class CommonViewMixin:
 # category,tag都从这里继承来处理多个URL的逻辑
 class IndexView(CommonViewMixin, ListView):
     queryset = Post.objects.filter(status=Post.STATUS_NORMAL).select_related('owner').select_related('category').values('id','title','desc','category_id','owner_id','writer','is_top')
-    paginate_by = 5
+    paginate_by = 8
     context_object_name = 'post_list'
     template_name = 'blog/list.html'
 

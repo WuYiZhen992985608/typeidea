@@ -173,22 +173,22 @@ REST_FRAMEWORK = {
     'PAGE_SIZE':2,
 }
 
-# CACHES = {
-#     'default':{
-#         # 内存缓存
-#         'BACKEND':'django.core.cache.backends.locmem.LocMemCache',
-#         'LOCATION':'unique-snowflake',
-#         # 文件缓存
-#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-#         'LOCATION': '/var/tmp/django_cache',
-#         # 数据库缓存
-#         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-#         'LOCATION': 'my_cache_table',
-#         # django推荐分布式缓存系统
-#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-#         'LOCATION': [
-#             '172.19.26.240:11211',
-#             '172.19.26.242:11211',
-#         ]
-#     }
-# }
+CACHES = {
+    'default':{
+        # 内存缓存
+        # 'BACKEND':'django.core.cache.backends.locmem.LocMemCache',
+        # 'LOCATION':'unique-snowflake',
+        # 文件缓存
+        # 'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        # 'LOCATION': '/var/tmp/django_cache',
+        # 数据库缓存
+        # 'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        # 'LOCATION': 'my_cache_table',
+        # django推荐分布式缓存系统
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': [
+            '47.101.142.220:11211',
+            # '192.168.247.159:11211',
+        ]
+    }
+}
